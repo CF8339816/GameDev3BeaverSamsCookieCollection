@@ -40,7 +40,9 @@ public class Interactable : MonoBehaviour
 
     public void EatCookie()
     {
-        calorieBarDriver.OnEat();
+        //calorieBarDriver.OnEat();
+        Debug.Log("calorie bar driver called");
+
         gameObject.SetActive(false);
     }
 }

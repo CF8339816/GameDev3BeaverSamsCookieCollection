@@ -41,7 +41,7 @@ public class CalorieBarDriver : MonoBehaviour
 
     public void cookieCalories()
     {
-       
+        Debug.Log("cookie calories method is being called");
         if (currentCalories >= MaxCalories) return; //  hard stop at 40 even though there are more cookies
 
         currentCalories++;
@@ -66,8 +66,8 @@ public class CalorieBarDriver : MonoBehaviour
 
     public void OnEat()
     {
-       
-            cookieCalories(); //adds 1 to calorie slider value and  updates the slider  based on the method
+        Debug.Log("the eat function is getting called");
+        cookieCalories(); //adds 1 to calorie slider value and  updates the slider  based on the method
             CookieCount++;//adds 1 to count when picked up
             SetCookieValue();   
       
