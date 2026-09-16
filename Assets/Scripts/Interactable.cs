@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 public class Interactable : MonoBehaviour
 {
     private System.Random rand = new System.Random();
-
+    private CalorieBarDriver calorieBarDriver;
     Outline outline;
     public string message;
 
@@ -40,6 +40,7 @@ public class Interactable : MonoBehaviour
 
     public void EatCookie()
     {
+        calorieBarDriver.OnEat();
         gameObject.SetActive(false);
     }
 }

@@ -57,22 +57,20 @@ public class CalorieBarDriver : MonoBehaviour
         }
     }
 
-    private  void whenMaxCalories()
+    public void whenMaxCalories()
     {
         //TriggerBoss level fight
     }
 
 
 
-    void OnTriggerEnter(Collider other)
+    public void OnEat()
     {
-        if (other.gameObject.CompareTag("PickUp")) //checks obj ffor PickUp tag
-        {
-            other.gameObject.SetActive(false); //deactivates obj when collided
+       
             cookieCalories(); //adds 1 to calorie slider value and  updates the slider  based on the method
             CookieCount++;//adds 1 to count when picked up
             SetCookieValue();   
-        }
+      
     }
    
 
