@@ -5,9 +5,9 @@ using UnityEngine.InputSystem.XR;
 
 public class StageTimer : MonoBehaviour
 {
-    [SerializeField] private TMP_Text stageTimer;
-    [SerializeField] private TMP_Text infoBox;
-    [SerializeField] private LevelManager levelManager;
+    [SerializeField] public TMP_Text stageTimer;
+    [SerializeField] public TMP_Text infoBox;
+    [SerializeField] public LevelManager levelManager;
     private float timeRemaining;
     private bool isTimerRunning = false;
 

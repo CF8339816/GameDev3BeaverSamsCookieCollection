@@ -408,6 +408,7 @@ GameObject:
   - component: {fileID: 406195548}
   - component: {fileID: 406195550}
   - component: {fileID: 406195549}
+  - component: {fileID: 406195551}
   m_Layer: 5
   m_Name: StageTimer
   m_TagString: Untagged
@@ -534,6 +535,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406195547}
   m_CullTransparentMesh: 1
+--- !u!114 &406195551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406195547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05f870990c6f0004cb2c8447192eae7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageTimer
+  stageTimer: {fileID: 406195549}
+  infoBox: {fileID: 1311653360}
+  levelManager: {fileID: 73340885}
 --- !u!1 &443818132
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,9 +1048,6 @@ GameObject:
   - component: {fileID: 1144034932}
   - component: {fileID: 1144034931}
   - component: {fileID: 1144034930}
-  - component: {fileID: 1144034936}
-  - component: {fileID: 1144034935}
-  - component: {fileID: 1144034934}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -1130,54 +1143,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1144034934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1144034929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a7e0a869966fd34fa25051adad9f715, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BloatBarDriver
-  bloatSlider: {fileID: 1995578763}
-  MaxBloat: 5
---- !u!114 &1144034935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1144034929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f9b9b50e82456441b941e24076fcfe4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CalorieBarDriver
-  cookieCount: {fileID: 834273167}
-  calerieCount: {fileID: 0}
-  calorieSlider: {fileID: 1378856951}
-  MaxCalories: 40
-  levelManager: {fileID: 73340885}
-  textCookieCount: {fileID: 834273167}
-  currentActiveLevel: {fileID: 0}
---- !u!114 &1144034936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1144034929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05f870990c6f0004cb2c8447192eae7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageTimer
-  stageTimer: {fileID: 406195549}
-  infoBox: {fileID: 1311653360}
-  levelManager: {fileID: 73340885}
 --- !u!1 &1304032298
 GameObject:
   m_ObjectHideFlags: 0
@@ -1462,6 +1427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1378856950}
   - component: {fileID: 1378856951}
+  - component: {fileID: 1378856952}
   m_Layer: 5
   m_Name: CalorieSlider
   m_TagString: Untagged
@@ -1543,6 +1509,25 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1378856952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378856949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f9b9b50e82456441b941e24076fcfe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CalorieBarDriver
+  cookieCount: {fileID: 834273167}
+  calerieCount: {fileID: 0}
+  calorieSlider: {fileID: 1378856951}
+  MaxCalories: 40
+  levelManager: {fileID: 73340885}
+  textCookieCount: {fileID: 834273167}
+  currentActiveLevel: {fileID: 0}
 --- !u!1 &1440417948
 GameObject:
   m_ObjectHideFlags: 0
@@ -2086,6 +2071,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1995578762}
   - component: {fileID: 1995578763}
+  - component: {fileID: 1995578764}
   m_Layer: 5
   m_Name: BloatSlider
   m_TagString: Untagged
@@ -2167,6 +2153,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1995578764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995578761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a7e0a869966fd34fa25051adad9f715, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BloatBarDriver
+  bloatSlider: {fileID: 1995578763}
+  MaxBloat: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

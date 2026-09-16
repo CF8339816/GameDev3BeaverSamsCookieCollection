@@ -15,7 +15,7 @@ public class CalorieBarDriver : MonoBehaviour
 {
 
     [SerializeField] private TMP_Text cookieCount;
-    [SerializeField] private TMP_Text calerieCount;
+   // [SerializeField] private TMP_Text calerieCount;
     [SerializeField] private Slider calorieSlider;
     [SerializeField] private int MaxCalories = 40;
 
@@ -76,7 +76,7 @@ public class CalorieBarDriver : MonoBehaviour
     }
    
 
-      void setCookiesPerLevel()
+     public void setCookiesPerLevel()
       {
         GameObject activeLevel = levelManager.currentActiveLevel;// sets  variable for active level directly from the active level state in level manager
 
