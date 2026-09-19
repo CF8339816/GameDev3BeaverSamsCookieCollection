@@ -40,6 +40,13 @@ public class Interactable : MonoBehaviour
 
     public void EatCookie()
     {
-        gameObject.SetActive(false);
+        if (Hands.instance != null)
+        {
+            Hands.instance.ReachForCookie(transform, () => gameObject.SetActive(false));
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
