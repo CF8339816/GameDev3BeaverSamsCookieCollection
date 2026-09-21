@@ -13,11 +13,18 @@ public class EventManager : MonoBehaviour
     [SerializeField] private int MaxCalories = 40;
     [SerializeField] private int MaxCookies = 45;
     [SerializeField] public LevelManager levelManager;
-    [SerializeField] private Slider BloatBar;
+    [SerializeField] private Slider bloatSlider;
     [SerializeField] private int MaxBloat = 5;
 
     public TextMeshProUGUI textItemsCount;
     public TextMeshProUGUI textInfoBox;
+    [SerializeField] public TMP_Text stageTimer;
+    public TextMeshProUGUI textStageTimer;
+
+
+    public float newTimeAllocation;
+    private float timeRemaining;
+    private bool isTimerRunning = false;
 
     private int currentItems = 0;
 
@@ -41,9 +48,9 @@ public class EventManager : MonoBehaviour
         CalorieCounter.minValue = 0;
         CalorieCounter.maxValue = 40;
         ItemPerLevelCount = 0;
-        BloatBar.value = 0;
-        BloatBar.minValue = 0;
-        BloatBar.maxValue = 40;
+        bloatSlider.value = 0;
+        bloatSlider.minValue = 0;
+        bloatSlider.maxValue = 5;
 
 
         if (levelManager != null)
@@ -54,13 +61,19 @@ public class EventManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) //checks for keypress to simulate item pickup
-        {
-            ItemsCount++;//adds 1 to max game count when picked up
-            ItemPerLevelCount++;//adds 1 to level count when picked up
-            SetItemsValue();
-            collectedItems(); //checks if max items reached for game  checks for max per level items for level change
-        }
+        //if (Input.GetKeyDown(KeyCode.E)) //checks for keypress to simulate item pickup
+        //{
+
+
+        //    ItemsCount++;//adds 1 to max game count when picked up
+        //    ItemPerLevelCount++;//adds 1 to level count when picked up
+        //    SetItemsValue();
+        //    collectedItems(); //checks if max items reached for game  checks for max per level items for level change
+
+        //}
+
+        updateHUD();
+        UpdateTimer();
 
         if (Input.GetKeyDown(KeyCode.Alpha1) && levelManager != null) //checks for keypress to simulate level change manually
         {
@@ -74,6 +87,26 @@ public class EventManager : MonoBehaviour
         {
             levelManager.levelChange(levelManager.Level03);
         }
+
+        if (isTimerRunning)
+        {
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+                UpdateTimer();
+            }
+            else
+            {
+                timeRemaining = 0;
+                isTimerRunning = false;
+                UpdateTimer();
+                Timer0();
+            }
+        }
+
+
+
+
     }
 
     public void DisplayInfoMessage(string message)// formats info box messages to utalize display clear timer instead of being on screen dynamically
@@ -89,9 +122,55 @@ public class EventManager : MonoBehaviour
         activeTextTimer = StartCoroutine(ClearTextBoxAfterDelay(4f)); //starts newly defined timer (currently 4 sec)
     }
 
+   
+    public void updateHUD()
+    {
+        if (Input.GetKeyDown(KeyCode.E)) //checks for keypress to simulate item pickup
+        {
+
+            if (gameObject.tag == "Interactable")
+            {
+                ItemsCount++;//adds 1 to max game count when picked up
+                ItemPerLevelCount++;//adds 1 to level count when picked up
+                collectedItems(); //checks if max items reached for game  checks for max per level items for level change
+            }
+
+        }
+    }
+    private void UpdateTimer()
+    {
+
+        if (timeRemaining < 0) timeRemaining = 0; // prevents negative seconds count 
+
+        int seconds = Mathf.FloorToInt(timeRemaining); // Display seconds
+        int milliseconds = Mathf.FloorToInt((timeRemaining - seconds) * 100);// display miliseconds
+
+        stageTimer.text = string.Format("{0:00}:{1:00}", seconds, milliseconds); //output value to timer
+    }
+
+    public void ResetAndStartTimer()
+    {
+        timeRemaining = newTimeAllocation;
+        isTimerRunning = true;
+    }
+    private void Timer0()
+    {
+        DisplayInfoMessage(" Time's Up the Cookies have gone bad. Time to check the next set of rooms. ");
+        //load nerxt stage code
+        if (levelManager != null)
+        {
+            levelManager.LoadNextChronologicalLevel();
+        }
+        else
+        {
+            Debug.LogError("StageTimer is missing its LevelManager reference! Assign it in the Inspector.");
+        }
+    }
+
     public void OnLevelChange(GameObject targetLevel)//manual  level change   and  reset
     {
         activeLevel = targetLevel;
+        ResetAndStartTimer();
         setItemsPerLevel(); // sets  max ipl
         SetItemsValue();  // resets level collection counter
     }
