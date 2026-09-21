@@ -1388,7 +1388,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1056476090855566311
 GameObject:
   m_ObjectHideFlags: 0
@@ -1696,7 +1696,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -608.2235, y: 456.93976}
+  m_AnchoredPosition: {x: -608.2235, y: 349}
   m_SizeDelta: {x: 535.553, y: 66.1205}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2902622000102818343
@@ -1803,7 +1803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3223648428519864693, guid: 1e52a88ea8203fc40a6aff7221aa99c8, type: 3}
       propertyPath: onInteraction.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3223648428519864693, guid: 1e52a88ea8203fc40a6aff7221aa99c8, type: 3}
       propertyPath: onInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -1820,7 +1820,7 @@ PrefabInstance:
     - target: {fileID: 3223648428519864693, guid: 1e52a88ea8203fc40a6aff7221aa99c8, type: 3}
       propertyPath: onInteraction.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 11500000, guid: 0f9b9b50e82456441b941e24076fcfe4, type: 3}
+      objectReference: {fileID: 7096570443954478367}
     - target: {fileID: 3223648428519864693, guid: 1e52a88ea8203fc40a6aff7221aa99c8, type: 3}
       propertyPath: onInteraction.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -1831,7 +1831,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3223648428519864693, guid: 1e52a88ea8203fc40a6aff7221aa99c8, type: 3}
       propertyPath: onInteraction.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: 
+      value: updateHUD
       objectReference: {fileID: 0}
     - target: {fileID: 3223648428519864693, guid: 1e52a88ea8203fc40a6aff7221aa99c8, type: 3}
       propertyPath: onInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1839,7 +1839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3223648428519864693, guid: 1e52a88ea8203fc40a6aff7221aa99c8, type: 3}
       propertyPath: onInteraction.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Interactable, Assembly-CSharp
+      value: EventManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3223648428519864693, guid: 1e52a88ea8203fc40a6aff7221aa99c8, type: 3}
       propertyPath: onInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -2128,7 +2128,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -608.2235, y: 358}
+  m_AnchoredPosition: {x: -608.2235, y: 457}
   m_SizeDelta: {x: 535.553, y: 66.1205}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &4845521208839884892
@@ -2146,7 +2146,7 @@ RectTransform:
   m_Father: {fileID: 3710438911793169937}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2165,6 +2165,8 @@ MonoBehaviour:
   stageTimer: {fileID: 1513569246286069987}
   infoBox: {fileID: 375049582574295939}
   levelManager: {fileID: 0}
+  timeRemaining: 0
+  isTimerRunning: 0
 --- !u!114 &4955139986849918146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2581,7 +2583,7 @@ RectTransform:
   m_Father: {fileID: 8766587056235805761}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2683,8 +2685,11 @@ MonoBehaviour:
   levelManager: {fileID: 298354153}
   bloatSlider: {fileID: 3993307083570337413}
   MaxBloat: 5
+  LevelTimer: 30
+  levelCountdownText: {fileID: 1513569246286069987}
   textItemsCount: {fileID: 1374082781448286947}
   textInfoBox: {fileID: 375049582574295939}
+  newTimeAllocation: 30
   MaxItemPerLevel: 0
 --- !u!224 &7099693748524400834
 RectTransform:

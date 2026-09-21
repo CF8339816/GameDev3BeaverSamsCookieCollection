@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
     {
         CloseAllScreens();// ensures no other active scenes at start 
         Level01.SetActive(true); // ensures level  1  initalized
-
+        StartCoroutine(eventManager.ResetAndStartTimer());
         // currentActiveLevel = Level01;// sets default starting stage
 
     }

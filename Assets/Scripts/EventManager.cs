@@ -15,16 +15,18 @@ public class EventManager : MonoBehaviour
     [SerializeField] public LevelManager levelManager;
     [SerializeField] private Slider bloatSlider;
     [SerializeField] private int MaxBloat = 5;
-
+   
+    [SerializeField] public float LevelTimer = 30f;
+    [SerializeField] public TextMeshProUGUI levelCountdownText;
+    private float Countdown;
+    
     public TextMeshProUGUI textItemsCount;
     public TextMeshProUGUI textInfoBox;
-    [SerializeField] public TMP_Text stageTimer;
-    public TextMeshProUGUI textStageTimer;
+   
 
 
     public float newTimeAllocation;
-    private float timeRemaining;
-    private bool isTimerRunning = false;
+
 
     private int currentItems = 0;
 
@@ -56,6 +58,13 @@ public class EventManager : MonoBehaviour
         if (levelManager != null)
         {
             OnLevelChange(levelManager.currentActiveLevel);
+
+            Countdown = LevelTimer;
+
+            if (levelCountdownText != null)
+            {
+                levelCountdownText.text = "";
+            }
         }
     }
 
@@ -73,7 +82,7 @@ public class EventManager : MonoBehaviour
         //}
 
         updateHUD();
-        UpdateTimer();
+     
 
         if (Input.GetKeyDown(KeyCode.Alpha1) && levelManager != null) //checks for keypress to simulate level change manually
         {
@@ -86,22 +95,6 @@ public class EventManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3) && levelManager != null) //checks for keypress to simulate level change manually
         {
             levelManager.levelChange(levelManager.Level03);
-        }
-
-        if (isTimerRunning)
-        {
-            if (timeRemaining > 0)
-            {
-                timeRemaining -= Time.deltaTime;
-                UpdateTimer();
-            }
-            else
-            {
-                timeRemaining = 0;
-                isTimerRunning = false;
-                UpdateTimer();
-                Timer0();
-            }
         }
 
 
@@ -137,23 +130,25 @@ public class EventManager : MonoBehaviour
 
         }
     }
-    private void UpdateTimer()
+  
+   public IEnumerator ResetAndStartTimer()
     {
+        while (Countdown > 0)
+        {
+            levelCountdownText.text = Mathf.Ceil(Countdown).ToString();// displays the countdown output in an always rounded up to whole int
+            yield return null;
 
-        if (timeRemaining < 0) timeRemaining = 0; // prevents negative seconds count 
+            Countdown -= Time.deltaTime;
+        }
+         if (Countdown == 0) 
+        {
+            Timer0();
+        }
 
-        int seconds = Mathf.FloorToInt(timeRemaining); // Display seconds
-        int milliseconds = Mathf.FloorToInt((timeRemaining - seconds) * 100);// display miliseconds
 
-        stageTimer.text = string.Format("{0:00}:{1:00}", seconds, milliseconds); //output value to timer
+       
     }
-
-    public void ResetAndStartTimer()
-    {
-        timeRemaining = newTimeAllocation;
-        isTimerRunning = true;
-    }
-    private void Timer0()
+    public void Timer0()
     {
         DisplayInfoMessage(" Time's Up the Cookies have gone bad. Time to check the next set of rooms. ");
         //load nerxt stage code
@@ -170,7 +165,7 @@ public class EventManager : MonoBehaviour
     public void OnLevelChange(GameObject targetLevel)//manual  level change   and  reset
     {
         activeLevel = targetLevel;
-        ResetAndStartTimer();
+        StartCoroutine(ResetAndStartTimer());
         setItemsPerLevel(); // sets  max ipl
         SetItemsValue();  // resets level collection counter
     }
