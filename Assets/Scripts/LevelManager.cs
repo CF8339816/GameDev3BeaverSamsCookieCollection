@@ -1,10 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -13,36 +6,37 @@ public class LevelManager : MonoBehaviour
     public GameObject Level01;
     public GameObject Level02;
     public GameObject Level03;
-    public GameObject BossFight;
-    public GameObject Tutorial;
-    public GameObject Menu;
-    public GameObject Settings;
-    public GameObject PauseScreen;
-    private GameObject player;
-    public GameObject currentActiveLevel;
-    public Transform spawnLocation;
-    public GameObject levelToLoad;
-    //public GameObject level; 
 
+    public GameObject currentActiveLevel;
+
+    public GameObject levelToLoad;
+    private EventManager eventManager;  //added to ensure level manager can find the event manager to tell it when to initalize stages
+
+
+    public void Awake()//added to ensure level manager runs prior to event manager
+    {
+        currentActiveLevel = Level01;//ensures level 1 initalized before event manager stsart to remove nulling issue causing the missync issue in the level collection  counter
+
+        eventManager = Object.FindFirstObjectByType<EventManager>();// find the event manager
+    }
 
     public void Start()
     {
-        currentActiveLevel = Menu;
-        // player = ServiceHub.Instance.playerController.gameObject;
+        CloseAllScreens();// ensures no other active scenes at start 
+        Level01.SetActive(true); // ensures level  1  initalized
+
+        // currentActiveLevel = Level01;// sets default starting stage
+
     }
-    public void CloseAllScreens()
+    public void CloseAllScreens() //closes all levels
     {
-        Menu.SetActive(false);
-        Settings.SetActive(false);
-        PauseScreen.SetActive(false);
+
         Level01.SetActive(false);
         Level02.SetActive(false);
         Level03.SetActive(false);
-        BossFight.SetActive(false);
-        Tutorial.SetActive(false);
 
     }
-    public void levelChange(GameObject levelToLoad, Transform spawnLocation)
+    public void levelChange(GameObject levelToLoad) // processes level change 
     {
         CloseAllScreens();
 
@@ -50,31 +44,25 @@ public class LevelManager : MonoBehaviour
         levelToLoad.SetActive(true);
         currentActiveLevel = levelToLoad;
 
-        player.transform.position = spawnLocation.position;
+
+        if (eventManager != null)// tells event manager to load new level 
+        {
+            eventManager.OnLevelChange(currentActiveLevel);
+        }
+
     }
 
-    public void LoadNextChronologicalLevel()
+    public void LoadNextChronologicalLevel()  //  loads stages in next chronological order
     {
-        if (currentActiveLevel == Menu || currentActiveLevel == Tutorial)
+        if (currentActiveLevel == Level01)
         {
-            levelChange(Level01, spawnLocation);
-        }
-        else if (currentActiveLevel == Level01)
-        {
-            levelChange(Level02, spawnLocation);
+            levelChange(Level02);
         }
         else if (currentActiveLevel == Level02)
         {
-            levelChange(Level03, spawnLocation);
+            levelChange(Level03);
         }
-        else if (currentActiveLevel == Level03)
-        {
-            levelChange(BossFight, spawnLocation);
-        }
-        else
-        {
-            levelChange(Menu, spawnLocation);
-        }
+
 
     }
 }
