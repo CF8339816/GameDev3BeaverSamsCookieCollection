@@ -6,7 +6,9 @@ public class LevelManager : MonoBehaviour
     public GameObject Level01;
     public GameObject Level02;
     public GameObject Level03;
-
+    //public GameObject BossFight;
+    //public GameObject Tutorial;
+    //public GameObject Menu;
     public GameObject currentActiveLevel;
 
     public GameObject levelToLoad;
@@ -15,26 +17,28 @@ public class LevelManager : MonoBehaviour
 
     public void Awake()//added to ensure level manager runs prior to event manager
     {
-        currentActiveLevel = Level01;//ensures level 1 initalized before event manager stsart to remove nulling issue causing the missync issue in the level collection  counter
-
+        //currentActiveLevel = Menu;//ensures level 1 initalized before event manager stsart to remove nulling issue causing the missync issue in the level collection  counter
+        currentActiveLevel = Level01;
         eventManager = Object.FindFirstObjectByType<EventManager>();// find the event manager
     }
 
     public void Start()
     {
         CloseAllScreens();// ensures no other active scenes at start 
-        Level01.SetActive(true); // ensures level  1  initalized
-        StartCoroutine(eventManager.ResetAndStartTimer());
+                          //Menu.SetActive(true); // ensures level  1  initalized
+        Level01.SetActive(true);
         // currentActiveLevel = Level01;// sets default starting stage
 
     }
     public void CloseAllScreens() //closes all levels
     {
-
+        
         Level01.SetActive(false);
         Level02.SetActive(false);
         Level03.SetActive(false);
-
+        //BossFight.SetActive(false);
+        //Tutorial.SetActive(false);
+        //Menu.SetActive(false);
     }
     public void levelChange(GameObject levelToLoad) // processes level change 
     {

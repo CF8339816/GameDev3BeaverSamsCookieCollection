@@ -22,19 +22,19 @@ public class GameExitManager : MonoBehaviour
 
    
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") && !isExiting)
-        {
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Player") && !isExiting)
+    //    {
 
-            isExiting = true;
-            StartCoroutine(StartExitCountdown());
+    //        isExiting = true;
+    //        StartCoroutine(StartExitCountdown());
 
-        }
+    //    }
 
 
-    }
-    IEnumerator StartExitCountdown()
+    //}
+    public IEnumerator StartExitCountdown()
     {
         while (Countdown > 0)
         {

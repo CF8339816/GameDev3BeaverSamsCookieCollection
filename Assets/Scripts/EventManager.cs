@@ -22,9 +22,9 @@ public class EventManager : MonoBehaviour
     
     public TextMeshProUGUI textItemsCount;
     public TextMeshProUGUI textInfoBox;
-   
 
 
+    private GameExitManager gameExitManager;
     public float newTimeAllocation;
 
 
@@ -42,7 +42,22 @@ public class EventManager : MonoBehaviour
         textInfoBox.text = ""; //Sets cleared message
     }
 
-    private Coroutine activeTextTimer; //defines timer coroutine
+    private IEnumerator ResetAndStartTimer()
+    {
+        while (Countdown > 0)
+        {
+            levelCountdownText.text = Mathf.Ceil(Countdown).ToString();// displays the countdown output in an always rounded up to whole int
+            yield return null;
+
+            Countdown -= Time.deltaTime;
+        }
+       
+
+
+
+    }
+
+     private Coroutine activeTextTimer; //defines timer coroutine for message duration
 
     void Start()
     {
@@ -82,7 +97,7 @@ public class EventManager : MonoBehaviour
         //}
 
         updateHUD();
-     
+        checkTimer();
 
         if (Input.GetKeyDown(KeyCode.Alpha1) && levelManager != null) //checks for keypress to simulate level change manually
         {
@@ -131,15 +146,9 @@ public class EventManager : MonoBehaviour
         }
     }
   
-   public IEnumerator ResetAndStartTimer()
+   public void checkTimer()
     {
-        while (Countdown > 0)
-        {
-            levelCountdownText.text = Mathf.Ceil(Countdown).ToString();// displays the countdown output in an always rounded up to whole int
-            yield return null;
-
-            Countdown -= Time.deltaTime;
-        }
+  
          if (Countdown == 0) 
         {
             Timer0();
@@ -205,7 +214,7 @@ public class EventManager : MonoBehaviour
 
             SetItemsValue();  // resets level collection counter
 
-
+            gameExitManager.StartExitCountdown();
         }
 
     }
