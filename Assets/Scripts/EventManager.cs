@@ -76,13 +76,7 @@ public class EventManager : MonoBehaviour
         if (levelManager != null)
         {
             OnLevelChange(levelManager.currentActiveLevel);
-
-            //Countdown = LevelTimer;
-
-            //if (levelCountdownText != null)
-            //{
-            //    levelCountdownText.text = "";
-            //}
+                        
         }
 
 
@@ -90,29 +84,7 @@ public class EventManager : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.E)) //checks for keypress to simulate item pickup
-        //{
-        //    ItemsCount++;//adds 1 to max game count when picked up
-        //    ItemPerLevelCount++;//adds 1 to level count when picked up
-        //    SetItemsValue();
-        //    collectedItems(); //checks if max items reached for game  checks for max per level items for level change
-        //}
-
-        //updateHUD();
         checkTimer();
-
-        //if (Input.GetKeyDown(KeyCode.Alpha1) && levelManager != null) //checks for keypress to simulate level change manually
-        //{
-        //    levelManager.levelChange(levelManager.Level01);
-        //}
-        //if (Input.GetKeyDown(KeyCode.Alpha2) && levelManager != null) //checks for keypress to simulate level change manually
-        //{
-        //    levelManager.levelChange(levelManager.Level02);
-        //}
-        //if (Input.GetKeyDown(KeyCode.Alpha3) && levelManager != null) //checks for keypress to simulate level change manually
-        //{
-        //    levelManager.levelChange(levelManager.Level03);
-        //}
     }
 
     public void DisplayInfoMessage(string message)// formats info box messages to utalize display clear timer instead of being on screen dynamically
@@ -129,15 +101,11 @@ public class EventManager : MonoBehaviour
    
     public void updateHUDFromCookieAction()
     {
-        //if (Input.GetKeyDown(KeyCode.E)) //checks for keypress to simulate item pickup
-        //{
-        //    if (gameObject.tag == "Interactable")
-        //    {
-                ItemsCount++;//adds 1 to max game count when picked up
-                ItemPerLevelCount++;//adds 1 to level count when picked up
-                collectedItems(); //checks if max items reached for game  checks for max per level items for level change
-        //    }
-        //}
+        
+        ItemsCount++;//adds 1 to max game count when picked up
+        ItemPerLevelCount++;//adds 1 to level count when picked up
+        collectedItems(); //checks if max items reached for game  checks for max per level items for level change
+       
     }
   
    public void checkTimer()
@@ -151,7 +119,7 @@ public class EventManager : MonoBehaviour
     {
         DisplayInfoMessage(" Time's Up the Cookies have gone bad. Time to check the next set of rooms. ");
         
-        if (levelManager != null)//load nerxt stage code
+        if (levelManager != null)//load next stage code
         {
             levelManager.LoadNextChronologicalLevel();
         }
@@ -210,13 +178,13 @@ public class EventManager : MonoBehaviour
             levelManager.LoadNextChronologicalLevel();
 
             activeLevel = levelManager.currentActiveLevel;
-            ItemPerLevelCount = 0;
+           // ItemPerLevelCount = 0;
 
             setItemsPerLevel(); // sets  max ipl
 
             SetItemsValue();  // resets level collection counter
 
-            gameExitManager.StartExitCountdown();
+           // gameExitManager.StartExitCountdown();
         }
     }
     public void setItemsPerLevel()// sets the max collectable items per level to trrigger stage change
