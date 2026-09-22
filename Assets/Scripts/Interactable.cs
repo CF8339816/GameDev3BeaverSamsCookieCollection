@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 public class Interactable : MonoBehaviour
 {
     private System.Random rand = new System.Random();
-
+  
     Outline outline;
     public string message;
 
@@ -40,6 +40,10 @@ public class Interactable : MonoBehaviour
 
     public void EatCookie()
     {
+<<<<<<< HEAD
+       
+        gameObject.SetActive(false);
+=======
         if (Hands.instance != null)
         {
             Hands.instance.ReachForCookie(transform, () => gameObject.SetActive(false));
@@ -48,5 +52,6 @@ public class Interactable : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+>>>>>>> origin/BossFight
     }
 }
