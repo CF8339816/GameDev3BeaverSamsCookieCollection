@@ -119,6 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &46194178
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,6 +319,8 @@ Transform:
   - {fileID: 847120737}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> origin/BossFight
 --- !u!1 &264023641
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,6 +719,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+<<<<<<< HEAD
 --- !u!1 &636992241
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,6 +969,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847120736}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+=======
+>>>>>>> origin/BossFight
 --- !u!114 &902002644 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3223648428519864693, guid: 1e52a88ea8203fc40a6aff7221aa99c8, type: 3}
