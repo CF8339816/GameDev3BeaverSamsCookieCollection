@@ -192,17 +192,17 @@ public class EventManager : MonoBehaviour
     {
         if (activeLevel == levelManager.Level01)
         {
-            DisplayInfoMessage(" Let's Collect items here!");
+            DisplayInfoMessage(" Let's Collect cookies here!");
             MaxItemPerLevel = 10;
         }
         else if (activeLevel == levelManager.Level02)
         {
-            DisplayInfoMessage("you have collected all the items on that stage! Let's Collect more here!");
+            DisplayInfoMessage("You have collected all the cookies on that stage! Let's Collect more here!");
             MaxItemPerLevel = 15;
         }
         else if (activeLevel == levelManager.Level03)
         {
-            DisplayInfoMessage("you have collected all the items on that stage! Let's Collect more here!");
+            DisplayInfoMessage("You have collected all the cookies on that stage! Let's Collect more here!");
             MaxItemPerLevel = 20;
         }
     }
