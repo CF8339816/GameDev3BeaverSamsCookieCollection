@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 5656466}
   - component: {fileID: 5656468}
   - component: {fileID: 5656467}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 226630151}
   - component: {fileID: 226630150}
   - component: {fileID: 226630149}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Level02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,13 +466,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1330990883}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1330990888}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: onLevel02
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -528,7 +528,7 @@ GameObject:
   - component: {fileID: 449081879}
   - component: {fileID: 449081878}
   - component: {fileID: 449081877}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,13 +599,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1330990883}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1330990888}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: onStart
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -660,7 +660,7 @@ GameObject:
   - component: {fileID: 531212474}
   - component: {fileID: 531212476}
   - component: {fileID: 531212475}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -934,7 +934,7 @@ GameObject:
   - component: {fileID: 1011207022}
   - component: {fileID: 1011207024}
   - component: {fileID: 1011207023}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1072,7 +1072,7 @@ GameObject:
   - component: {fileID: 1093460339}
   - component: {fileID: 1093460338}
   - component: {fileID: 1093460337}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Level01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1143,13 +1143,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1330990883}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1330990888}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: onLevel01
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1276,7 +1276,7 @@ GameObject:
   - component: {fileID: 1260661201}
   - component: {fileID: 1260661203}
   - component: {fileID: 1260661202}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1526,6 +1526,9 @@ MonoBehaviour:
   Level01: {fileID: 0}
   Level02: {fileID: 0}
   Level03: {fileID: 0}
+  BossStage: {fileID: 0}
+  Tutorial: {fileID: 0}
+  Menu: {fileID: 0}
   currentActiveLevel: {fileID: 0}
   levelToLoad: {fileID: 0}
 --- !u!1 &1525221888
@@ -1539,7 +1542,7 @@ GameObject:
   - component: {fileID: 1525221889}
   - component: {fileID: 1525221891}
   - component: {fileID: 1525221890}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1753,7 +1756,7 @@ GameObject:
   - component: {fileID: 1690123400}
   - component: {fileID: 1690123399}
   - component: {fileID: 1690123398}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1824,13 +1827,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1330990883}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1330990888}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: onBoss
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1886,7 +1889,7 @@ GameObject:
   - component: {fileID: 1784058278}
   - component: {fileID: 1784058277}
   - component: {fileID: 1784058276}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Level03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1957,13 +1960,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1330990883}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1330990888}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: onLevel03
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2019,7 +2022,7 @@ GameObject:
   - component: {fileID: 1853577855}
   - component: {fileID: 1853577854}
   - component: {fileID: 1853577853}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2090,13 +2093,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1330990883}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1330990888}
+        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
+        m_MethodName: onTutorial
+        m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2151,7 +2154,7 @@ GameObject:
   - component: {fileID: 1932792861}
   - component: {fileID: 1932792863}
   - component: {fileID: 1932792862}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

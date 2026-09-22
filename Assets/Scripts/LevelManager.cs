@@ -6,9 +6,9 @@ public class LevelManager : MonoBehaviour
     public GameObject Level01;
     public GameObject Level02;
     public GameObject Level03;
-    //public GameObject BossFight;
-    //public GameObject Tutorial;
-    //public GameObject Menu;
+    public GameObject BossStage;
+    public GameObject Tutorial;
+    public GameObject Menu;
     public GameObject currentActiveLevel;
 
     public GameObject levelToLoad;
@@ -18,7 +18,7 @@ public class LevelManager : MonoBehaviour
     public void Awake()//added to ensure level manager runs prior to event manager
     {
         //currentActiveLevel = Menu;//ensures level 1 initalized before event manager stsart to remove nulling issue causing the missync issue in the level collection  counter
-        currentActiveLevel = Level01;
+        currentActiveLevel = Menu;
         eventManager = Object.FindFirstObjectByType<EventManager>();// find the event manager
     }
 
@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour
     {
         CloseAllScreens();// ensures no other active scenes at start 
                           //Menu.SetActive(true); // ensures level  1  initalized
-        Level01.SetActive(true);
+        Menu.SetActive(true);
         // currentActiveLevel = Level01;// sets default starting stage
 
     }
@@ -36,9 +36,9 @@ public class LevelManager : MonoBehaviour
         Level01.SetActive(false);
         Level02.SetActive(false);
         Level03.SetActive(false);
-        //BossFight.SetActive(false);
-        //Tutorial.SetActive(false);
-        //Menu.SetActive(false);
+       BossStage.SetActive(false);
+        Tutorial.SetActive(false);
+        Menu.SetActive(false);
     }
     public void levelChange(GameObject levelToLoad) // processes level change 
     {
@@ -67,6 +67,107 @@ public class LevelManager : MonoBehaviour
             levelChange(Level03);
         }
 
+    }
+
+    public void onStart(GameObject Level01) // processes level change 
+    {
+        CloseAllScreens();
+
+        currentActiveLevel.SetActive(false);
+        Level01.SetActive(true);
+        currentActiveLevel = Level01;
+
+
+        if (eventManager != null)// tells event manager to load new level 
+        {
+            eventManager.OnLevelChange(currentActiveLevel);
+        }
 
     }
+
+    public void onLevel01(GameObject Level01) // processes level change 
+    {
+        CloseAllScreens();
+
+        currentActiveLevel.SetActive(false);
+        Level01.SetActive(true);
+        currentActiveLevel = Level01;
+
+
+        if (eventManager != null)// tells event manager to load new level 
+        {
+            eventManager.OnLevelChange(currentActiveLevel);
+        }
+
+    }
+
+    public void onLevel02(GameObject Level02) // processes level change 
+    {
+        CloseAllScreens();
+
+        currentActiveLevel.SetActive(false);
+        Level02.SetActive(true);
+        currentActiveLevel = Level02;
+
+
+        if (eventManager != null)// tells event manager to load new level 
+        {
+            eventManager.OnLevelChange(currentActiveLevel);
+        }
+
+    }
+
+    public void onLevel03(GameObject Level03) // processes level change 
+    {
+        CloseAllScreens();
+
+        currentActiveLevel.SetActive(false);
+        Level03.SetActive(true);
+        currentActiveLevel = Level03;
+
+
+        if (eventManager != null)// tells event manager to load new level 
+        {
+            eventManager.OnLevelChange(currentActiveLevel);
+        }
+
+    }
+
+    public void onTutorial(GameObject Tutorial) // processes level change 
+    {
+        CloseAllScreens();
+
+        currentActiveLevel.SetActive(false);
+        Tutorial.SetActive(true);
+        currentActiveLevel = Tutorial;
+
+
+        if (eventManager != null)// tells event manager to load new level 
+        {
+            eventManager.OnLevelChange(currentActiveLevel);
+        }
+
+    }
+
+
+    public void onBoss(GameObject BossStage) // processes level change 
+    {
+        CloseAllScreens();
+
+        currentActiveLevel.SetActive(false);
+        BossStage.SetActive(true);
+        currentActiveLevel = BossStage;
+
+
+        if (eventManager != null)// tells event manager to load new level 
+        {
+            eventManager.OnLevelChange(currentActiveLevel);
+        }
+
+    }
+
+
+
+
+
 }
