@@ -85,6 +85,7 @@ public class EventManager : MonoBehaviour
     void Update()
     {
         checkTimer();
+        SetItemsValue();
     }
 
     public void DisplayInfoMessage(string message)// formats info box messages to utalize display clear timer instead of being on screen dynamically
@@ -192,7 +193,7 @@ public class EventManager : MonoBehaviour
         if (activeLevel == levelManager.Level01)
         {
             DisplayInfoMessage(" Let's Collect items here!");
-            MaxItemPerLevel = 10;
+            MaxItemPerLevel = 4;
         }
         else if (activeLevel == levelManager.Level02)
         {
