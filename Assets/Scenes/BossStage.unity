@@ -159,7 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 67089967}
-  - component: {fileID: 67089966}
+  - component: {fileID: 67089968}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -167,7 +167,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &67089966
+--- !u!4 &67089967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67089965}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.5, y: 10, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1936123343}
+  - {fileID: 686670452}
+  - {fileID: 1878678109}
+  - {fileID: 642429168}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &67089968
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,25 +215,6 @@ MonoBehaviour:
   _currentTarget: {fileID: 0}
   _previousTarget: {fileID: 0}
   _prepPos: {fileID: 0}
---- !u!4 &67089967
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67089965}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.5, y: 10, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1936123343}
-  - {fileID: 686670452}
-  - {fileID: 1878678109}
-  - {fileID: 642429168}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &290113360
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,7 +918,6 @@ GameObject:
   - component: {fileID: 1936123342}
   - component: {fileID: 1936123341}
   - component: {fileID: 1936123340}
-  - component: {fileID: 1936123344}
   m_Layer: 0
   m_Name: BossBody
   m_TagString: Untagged
@@ -1019,29 +1018,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 67089967}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1936123344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1936123339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f94f0969a9a4bca43960700289e75f2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BossController
-  _jumpPositions: []
-  _handPrepPosition: []
-  _restPosition: {fileID: 0}
-  _bossHand: {fileID: 0}
-  _attackTimer: 0
-  _attackInterval: 5
-  _minAttackInterval: 2
-  _intervalChange: 0.5
-  _currentTarget: {fileID: 0}
-  _previousTarget: {fileID: 0}
-  _prepPos: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

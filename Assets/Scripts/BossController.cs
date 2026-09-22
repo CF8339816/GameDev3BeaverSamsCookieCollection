@@ -44,35 +44,31 @@ public class BossController : MonoBehaviour
         }
     }
 
-    void Attack()
+    /*void Attack()
     {
         _prepPos = _handPrepPosition[rand.Next(0, _handPrepPosition.Count)];
         _currentTarget = _jumpPositions[rand.Next(0, _jumpPositions.Count)];
 
         _bossHand.transform.position = _prepPos.position;
-    }
+    }*/
 
-    /*void Attack()
+    void Attack()
     {
         int i;
 
-        if (_prepPos != null)
-        {
-            _previousTarget = _prepPos;
-            Debug.Log("set previous target");
-        }
+        Transform previousPrep = _prepPos;
 
-        
-        
-        while (_prepPos == _previousTarget && _prepPos != null)
+        do
         {
-            Debug.Log("Trying to get the position");
             i = rand.Next(0, _handPrepPosition.Count);
             _prepPos = _handPrepPosition[i];
             _currentTarget = _jumpPositions[i];
         }
+        while (_prepPos == previousPrep && _handPrepPosition.Count > 1);
+
+        _previousTarget = previousPrep;
 
         Debug.Log("Setting boss hand to selected position");
         _bossHand.transform.position = _prepPos.position;
-    }*/
+    }
 }
