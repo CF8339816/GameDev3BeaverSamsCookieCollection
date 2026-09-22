@@ -1397,8 +1397,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7181227463387256094, guid: f996112b40d5e794da8ae6636f69938f, type: 3}
+      propertyPath: canCrouch
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181227463387256094, guid: f996112b40d5e794da8ae6636f69938f, type: 3}
       propertyPath: standCheckLayers.m_Bits
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588660136707474789, guid: f996112b40d5e794da8ae6636f69938f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2765,7 +2773,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1328248372}
-  - {fileID: 259914254}
   - {fileID: 1768639443}
   - {fileID: 3196228040309970569}
   - {fileID: 99883483}
