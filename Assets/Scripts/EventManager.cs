@@ -57,12 +57,12 @@ public class EventManager : MonoBehaviour
 
     private void OnEnable()
     {
-        playerInteraction.OnCookieEaten += HandleCookieActionReceived; //listens for player's cookie interaction
+        PlayerInteraction.OnCookieEaten += updateHUDFromCookieAction; //listens for player's cookie interaction
     }
 
     private void OnDisable()
     {
-        playerInteraction.OnCookieEaten -= HandleCookieActionReceived; //  stops the cookie listen
+        PlayerInteraction.OnCookieEaten -= updateHUDFromCookieAction; //  stops the cookie listen
     }
 
 

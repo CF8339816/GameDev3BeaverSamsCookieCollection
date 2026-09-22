@@ -1,9 +1,19 @@
 using UnityEngine;
+using System;///CF for callout function due to code merge
+
+//// CF added bits of code to provide the broadcast of the cookie  
+///pickup by  player  for the event manager to listen for, it is 
+/// annotated with "///CF for callout function due to code merge"
+
 
 public class PlayerInteraction : MonoBehaviour
 {
     public float playerReach = 3f;
     Interactable currentInteractable;
+
+    public static event Action OnCookieEaten;///CF for callout function due to code merge
+
+
 
     // Update is called once per frame
     void Update()
@@ -12,6 +22,11 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
         {
             currentInteractable.Interact();
+
+            OnCookieEaten?.Invoke();///CF for callout function due to code merge  (broadcast)
+
+            DisableCurrentInteractable();///CF for callout function due to code merge  (clears)
+
         }
     }
 
