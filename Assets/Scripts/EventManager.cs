@@ -85,6 +85,7 @@ public class EventManager : MonoBehaviour
     void Update()
     {
         checkTimer();
+        SetItemsValue();
     }
 
     public void DisplayInfoMessage(string message)// formats info box messages to utalize display clear timer instead of being on screen dynamically
