@@ -1,6 +1,18 @@
 using Unity.VectorGraphics;
 using UnityEngine;
 
+
+#region coder & project
+/// <summary>
+/// NSCC GAME2065/4087/Game Development III(B)/Cameron,Jordan
+/// Jam 1 :Beaver Sam's Cookie Cruncher
+/// team: Chris French, Roman Zhurakhov, Myranda Roy
+/// Coder current script: Chris French Second Year NSCC Game Programming 
+/// Additions / annotations:
+/// 
+/// </summary>
+#endregion
+
 public class LevelManager : MonoBehaviour
 {
     //public Scene Level;
@@ -17,6 +29,7 @@ public class LevelManager : MonoBehaviour
     public GameObject levelToLoad;
     private EventManager eventManager;  //added to ensure level manager can find the event manager to tell it when to initalize stages
 
+    public GameObject HUD;
 
     public void Awake()//added to ensure level manager runs prior to event manager
     {
@@ -42,6 +55,7 @@ public class LevelManager : MonoBehaviour
        BossStage.SetActive(false);
         Tutorial.SetActive(false);
         Menu.SetActive(false);
+        HUD.SetActive(false);
     }
     public void levelChange(GameObject levelToLoad) // processes level change 
     {
@@ -109,6 +123,7 @@ public class LevelManager : MonoBehaviour
 
         currentActiveLevel.SetActive(false);
         Level01.SetActive(true);
+        HUD.SetActive(true);
         currentActiveLevel = Level01;
 
 
@@ -125,6 +140,7 @@ public class LevelManager : MonoBehaviour
 
         currentActiveLevel.SetActive(false);
         Level02.SetActive(true);
+        HUD.SetActive(true); 
         currentActiveLevel = Level02;
 
 
@@ -141,6 +157,7 @@ public class LevelManager : MonoBehaviour
 
         currentActiveLevel.SetActive(false);
         Level03.SetActive(true);
+        HUD.SetActive(true);
         currentActiveLevel = Level03;
 
 
@@ -174,6 +191,7 @@ public class LevelManager : MonoBehaviour
 
         currentActiveLevel.SetActive(false);
         BossStage.SetActive(true);
+        HUD.SetActive(true);
         currentActiveLevel = BossStage;
 
 

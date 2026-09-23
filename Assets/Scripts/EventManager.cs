@@ -4,6 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
+#region coder & project
+/// <summary>
+/// NSCC GAME2065/4087/Game Development III(B)/Cameron,Jordan
+/// Jam 1 :Beaver Sam's Cookie Cruncher
+/// team: Chris French, Roman Zhurakhov, Myranda Roy
+/// Coder current script: Chris French Second Year NSCC Game Programming 
+/// Additions / annotations:
+/// 
+/// </summary>
+#endregion
+
 public class EventManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text CookieCountPerLevel;
@@ -14,7 +25,7 @@ public class EventManager : MonoBehaviour
     public TextMeshProUGUI textInfoBox;
 
    
-    [SerializeField] private int MaxCalories = 40;
+    [SerializeField] public int MaxCalories = 40;
     [SerializeField] private int MaxCookies = 45;
     [SerializeField] public float LevelTimer = 30f;
     public float Countdown;
@@ -29,7 +40,7 @@ public class EventManager : MonoBehaviour
     public float newTimeAllocation;
     private int currentItems = 0;
     private int ItemPerLevelCount = 0;
-    private int ItemsCount;
+    public int ItemsCount;
     
     private GameObject currentActiveLevel;
     private GameObject activeLevel;

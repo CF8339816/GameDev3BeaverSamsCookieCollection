@@ -1,5 +1,18 @@
 using UnityEngine;
 
+
+#region coder & project
+/// <summary>
+/// NSCC GAME2065/4087/Game Development III(B)/Cameron,Jordan
+/// Jam 1 :Beaver Sam's Cookie Cruncher
+/// team: Chris French, Roman Zhurakhov, Myranda Roy
+/// Coder current script: Chris French Second Year NSCC Game Programming 
+/// Additions / annotations:
+/// 
+/// </summary>
+#endregion
+
+
 public class Menu : MonoBehaviour
 {
 
