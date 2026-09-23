@@ -12,6 +12,7 @@ public class EventManager : MonoBehaviour
     [SerializeField] public TextMeshProUGUI levelCountdownText;
     public TextMeshProUGUI textItemsCount;
     public TextMeshProUGUI textInfoBox;
+
    
     [SerializeField] private int MaxCalories = 40;
     [SerializeField] private int MaxCookies = 45;
@@ -21,7 +22,8 @@ public class EventManager : MonoBehaviour
     [SerializeField] public LevelManager levelManager;  
     private GameExitManager gameExitManager;
     private PlayerInteraction playerInteraction;
-    private AddAudio addAudio; 
+    private AddAudio addAudio;
+    private IconVisibility iconVisibility;
 
     public int MaxItemPerLevel;
     public float newTimeAllocation;
@@ -104,6 +106,7 @@ public class EventManager : MonoBehaviour
         ItemPerLevelCount++;//adds 1 to level count when picked up
         collectedItems(); //checks if max items reached for game  checks for max per level items for level change
         addAudio.OnNom();
+        iconVisibility.FlashVisible();
     }
   
    public void checkTimer()
@@ -144,7 +147,14 @@ public class EventManager : MonoBehaviour
         setItemsPerLevel(); // sets  max ipl
         
         SetItemsValue();  // resets level collection counter
-
+        if (activeLevel == levelManager.Level01 || levelManager.Level02 || levelManager.Level03 ) //turn on visibility for Idle Icon  on levels 1,2 and 3 ... but off on menu boss and tutorial
+        {
+            iconVisibility.idleIcon.SetActive(true);
+        }
+        else
+        {
+            iconVisibility.idleIcon.SetActive(false);
+        }
         Countdown = LevelTimer;
         StopTimerCoroutine();
         countdownCoroutine = StartCoroutine(ResetAndStartTimer());
