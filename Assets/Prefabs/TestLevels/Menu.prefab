@@ -193,13 +193,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5046487389919032434}
+      - m_Target: {fileID: 6326180487949209834}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: onLevel03
-        m_Mode: 2
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1098,7 +1098,7 @@ MonoBehaviour:
         m_MethodName: onTutorial
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 4919029285852234960}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1231,7 +1231,7 @@ MonoBehaviour:
         m_MethodName: onStart
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 5257204453832659423}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1360,14 +1360,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e98c75b21fa7bfd4eb785ef6c43f5b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  Level01: {fileID: 0}
-  Level02: {fileID: 0}
-  Level03: {fileID: 0}
+  Level01: {fileID: 3951874878627275011, guid: 2ce2c0df32f9d134785c4fa0796c2d0a, type: 3}
+  Level02: {fileID: 3173425716432253980, guid: 17fc7ea32b92eba42ba17618eb8baa1e, type: 3}
+  Level03: {fileID: 433452980835205956, guid: d2b851c54a6d9b849afb3781e9dc3fa3, type: 3}
   BossStage: {fileID: 0}
   Tutorial: {fileID: 0}
-  Menu: {fileID: 0}
+  Menu: {fileID: 6326180487949209834}
   currentActiveLevel: {fileID: 0}
   levelToLoad: {fileID: 0}
+  HUD: {fileID: 7755556087075648803, guid: 4946125f362e32b4890d4afa14d66a2d, type: 3}
 --- !u!1 &6493817415136342917
 GameObject:
   m_ObjectHideFlags: 0
@@ -1494,7 +1495,7 @@ MonoBehaviour:
         m_MethodName: onLevel02
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 3173425716432253980, guid: 17fc7ea32b92eba42ba17618eb8baa1e, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1836,7 +1837,7 @@ MonoBehaviour:
         m_MethodName: onLevel01
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 3951874878627275011, guid: 2ce2c0df32f9d134785c4fa0796c2d0a, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0

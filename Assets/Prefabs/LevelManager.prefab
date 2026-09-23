@@ -53,6 +53,7 @@ MonoBehaviour:
   Menu: {fileID: 6326180487949209834, guid: fc8ad84652ad7e546b042278db3b12e6, type: 3}
   currentActiveLevel: {fileID: 0}
   levelToLoad: {fileID: 0}
+  HUD: {fileID: 7755556087075648803, guid: 4946125f362e32b4890d4afa14d66a2d, type: 3}
 --- !u!114 &5481489054419289085
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -30,7 +30,7 @@ public class AddAudio: MonoBehaviour
 
 
     [Header("UI Elements")]
-    [SerializeField] public Slider volumeSlider; // defines  the slider ui element being used
+    [SerializeField] public Slider volumeSlider ; // defines  the slider ui element being used
 
     private void Awake()
     {
