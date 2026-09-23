@@ -1,8 +1,11 @@
+using Unity.VectorGraphics;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-
+    //public Scene Level;
+    //public Scene Menu;
+    //public Scene Tutorial;
     public GameObject Level01;
     public GameObject Level02;
     public GameObject Level03;
