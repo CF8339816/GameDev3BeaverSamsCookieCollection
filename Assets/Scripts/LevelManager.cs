@@ -85,6 +85,21 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    public void onMenu(GameObject Menu) // processes level change 
+    {
+        CloseAllScreens();
+
+        currentActiveLevel.SetActive(false);
+        Menu.SetActive(true);
+        currentActiveLevel = Menu;
+
+
+        if (eventManager != null)// tells event manager to load new level 
+        {
+            eventManager.OnLevelChange(currentActiveLevel);
+        }
+
+    }
     public void onLevel01(GameObject Level01) // processes level change 
     {
         CloseAllScreens();
