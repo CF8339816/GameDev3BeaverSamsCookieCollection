@@ -1,7 +1,9 @@
 using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
-
+/// <summary>
+/// CF- changed generate level to public so it can be called  by the level manager to create defined levels for it to access
+/// </summary>
 public class LevelGeneration : MonoBehaviour
 {
     [Tooltip("Rooms Settings")]
@@ -26,7 +28,7 @@ public class LevelGeneration : MonoBehaviour
 
     }
 
-    void GenerateLevel()
+   public void GenerateLevel()  ///CF made function public so it can be called by Level management script to create level 1,2, and 3 
     {
         for (int i = 0; i < 10; i++)
         {

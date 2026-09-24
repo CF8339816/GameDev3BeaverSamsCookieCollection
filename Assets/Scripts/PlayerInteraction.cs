@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;///CF for callout function due to code merge
 
-//// CF added bits of code to provide the broadcast of the cookie  
+//// CF- added bits of code to provide the broadcast of the cookie  
 ///pickup by  player  for the event manager to listen for, it is 
 /// annotated with "///CF for callout function due to code merge"
 

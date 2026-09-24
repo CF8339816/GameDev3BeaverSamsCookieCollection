@@ -1,6 +1,8 @@
+using System.Collections;
 using Unity.VectorGraphics;
 using UnityEngine;
-
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 #region coder & project
 /// <summary>
@@ -15,6 +17,7 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    public static LevelManager Instance;
     //public Scene Level;
     //public Scene Menu;
     //public Scene Tutorial;
@@ -25,7 +28,7 @@ public class LevelManager : MonoBehaviour
     public GameObject Tutorial;
     public GameObject Menu;
     public GameObject currentActiveLevel;
-
+    private LevelGeneration levelGeneration;
     public GameObject levelToLoad;
     private EventManager eventManager;  //added to ensure level manager can find the event manager to tell it when to initalize stages
 
@@ -33,7 +36,22 @@ public class LevelManager : MonoBehaviour
 
     public void Awake()//added to ensure level manager runs prior to event manager
     {
-        //currentActiveLevel = Menu;//ensures level 1 initalized before event manager stsart to remove nulling issue causing the missync issue in the level collection  counter
+
+        //if (Instance == null)
+        //{
+        //    Instance = this;
+        //}
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
+
+        Level01= levelGeneration.GenerateLevel();
+        Level02= levelGeneration.GenerateLevel();
+        Level03 = levelGeneration.GenerateLevel();
+
+
+
         currentActiveLevel = Menu;
         eventManager = Object.FindFirstObjectByType<EventManager>();// find the event manager
     }

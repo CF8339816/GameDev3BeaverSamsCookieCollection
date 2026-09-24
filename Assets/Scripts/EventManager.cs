@@ -122,7 +122,7 @@ public class EventManager : MonoBehaviour
   
    public void checkTimer()
     { 
-         if (Countdown <= 0) 
+         if (Countdown < 1) 
         {
             Timer0();
         }       
