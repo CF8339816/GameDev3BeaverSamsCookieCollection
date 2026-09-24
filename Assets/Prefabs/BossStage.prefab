@@ -508,12 +508,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8587520205870377367}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: onLevel01
+        m_MethodName: onStart
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 875565167220121048, guid: a56618425eed74a419bebf131f0ebd93, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -529,13 +529,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4327977930657562570}
+  - component: {fileID: 8587520205870377367}
   m_Layer: 0
   m_Name: BossStage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4327977930657562570
 Transform:
   m_ObjectHideFlags: 0
@@ -555,6 +556,27 @@ Transform:
   - {fileID: 7418835846358386300}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8587520205870377367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4763642357381298945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e98c75b21fa7bfd4eb785ef6c43f5b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelManager
+  Level01: {fileID: 875565167220121048, guid: a56618425eed74a419bebf131f0ebd93, type: 3}
+  Level02: {fileID: 8048021801480957354, guid: e899aef80e8336949bc688361041197d, type: 3}
+  Level03: {fileID: 6866605929030641539, guid: acc16fdf3facc1a429a1e0ad2166ce95, type: 3}
+  BossStage: {fileID: 4763642357381298945}
+  Tutorial: {fileID: 4257261511968654628, guid: 7ad7c3b2c93b749429c8a9056d37ccae, type: 3}
+  Menu: {fileID: 7612287411338057173, guid: bc399e329a69a094c8f1dec75cb6b88a, type: 3}
+  currentActiveLevel: {fileID: 0}
+  levelToLoad: {fileID: 0}
+  HUD: {fileID: 7755556087075648803, guid: 4946125f362e32b4890d4afa14d66a2d, type: 3}
 --- !u!1 &5368152660618696245
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,12 +1234,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8587520205870377367}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
         m_MethodName: onMenu
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 7612287411338057173, guid: bc399e329a69a094c8f1dec75cb6b88a, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0

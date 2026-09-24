@@ -13,7 +13,7 @@ using UnityEngine;
 /// team: Chris French, Roman Zhurakhov, Myranda Roy
 /// Coder current script: Chris French Second Year NSCC Game Programming 
 /// Additions / annotations:
-/// 
+/// code review Roman Zhurakhov
 /// </summary>
 #endregion
 
