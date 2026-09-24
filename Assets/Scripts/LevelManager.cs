@@ -46,9 +46,9 @@ public class LevelManager : MonoBehaviour
         //    Destroy(gameObject);
         //}
 
-        Level01= levelGeneration.GenerateLevel();
-        Level02= levelGeneration.GenerateLevel();
-        Level03 = levelGeneration.GenerateLevel();
+        //Level01= levelGeneration.GenerateLevel();
+        //Level02= levelGeneration.GenerateLevel();
+        //Level03 = levelGeneration.GenerateLevel();
 
 
 

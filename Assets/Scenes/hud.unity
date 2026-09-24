@@ -842,6 +842,11 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &806531612 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4697374481998735476, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+  m_PrefabInstance: {fileID: 5162152294806770284}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &827525957
 Mesh:
   m_ObjectHideFlags: 0
@@ -3713,6 +3718,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1973053857}
+    - target: {fileID: 4862537044186831062, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+      propertyPath: Tutorial
+      value: 
+      objectReference: {fileID: 806531612}
+    - target: {fileID: 4862537044186831062, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+      propertyPath: BossStage
+      value: 
+      objectReference: {fileID: 8914038232813453864}
     - target: {fileID: 5017499457070216047, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
       propertyPath: m_Mesh
       value: 
