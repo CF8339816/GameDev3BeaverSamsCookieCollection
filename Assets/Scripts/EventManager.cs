@@ -273,11 +273,11 @@ public class EventManager : MonoBehaviour
     {
         if (bossController.IsAttacking == true)
         {
-            //if ((LeftHandTarget && RightHandTarget == PlayerJumpTarget) || (LeftHandTarget || RightHandTarget == PlayerJumpTarget))
-            //{
-                MaxCookies--;
+            if ((LeftHandTarget == PlayerJumpTarget) || ( RightHandTarget == PlayerJumpTarget))
+            {
+                ItemsCount--;
                 DisplayInfoMessage("oh Noes the Dangle Dragon has snached a cookie!");
-            //}
+            }
         }
         else
         {
@@ -286,6 +286,7 @@ public class EventManager : MonoBehaviour
 
         if (bossController.IsAttacking == false)
         {
+            DisplayInfoMessage("The Dangle Dragon has gotten frustraited with all your Beaverie jumping around \n it has run away with whatever cookies it could grabbie grab...");
             gameExitManager.Wincheck();
         }
     }

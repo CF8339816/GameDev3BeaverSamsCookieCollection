@@ -18,9 +18,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
-    //public Scene Level;
-    //public Scene Menu;
-    //public Scene Tutorial;
+   
     public GameObject Level01;
     public GameObject Level02;
     public GameObject Level03;
@@ -36,22 +34,6 @@ public class LevelManager : MonoBehaviour
 
     public void Awake()//added to ensure level manager runs prior to event manager
     {
-
-        //if (Instance == null)
-        //{
-        //    Instance = this;
-        //}
-        //else
-        //{
-        //    Destroy(gameObject);
-        //}
-
-        //Level01= levelGeneration.GenerateLevel();
-        //Level02= levelGeneration.GenerateLevel();
-        //Level03 = levelGeneration.GenerateLevel();
-
-
-
         currentActiveLevel = Menu;
         eventManager = Object.FindFirstObjectByType<EventManager>();// find the event manager
     }
@@ -59,10 +41,9 @@ public class LevelManager : MonoBehaviour
     public void Start()
     {
         CloseAllScreens();// ensures no other active scenes at start 
-                          //Menu.SetActive(true); // ensures level  1  initalized
-        Menu.SetActive(true);
-        // currentActiveLevel = Level01;// sets default starting stage
-
+                          
+        Menu.SetActive(true);// sets default starting stage
+        
     }
     public void CloseAllScreens() //closes all levels
     {
