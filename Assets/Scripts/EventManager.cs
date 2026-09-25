@@ -74,7 +74,7 @@ public class EventManager : MonoBehaviour
 
     private void HandlePlayerJump(Vector3 targetPosition)
     {
-        // 2. Safely stored without touching the Boss variables!
+        
         PlayerJumpTarget = targetPosition;
 
         Debug.Log($"EventManager caught Player jumping to: {PlayerJumpTarget}");
@@ -100,7 +100,7 @@ public class EventManager : MonoBehaviour
     {
         PlayerInteraction.OnCookieEaten += updateHUDFromCookieAction; //listens for player's cookie interaction
         BossController.OnHandMovementStarted += HandleHandMovement;  // same but for boss hands
-        Boss_PlayerController.OnPlayerJumpStarted += HandlePlayerJump;
+        Boss_PlayerController.OnPlayerJumpStarted += HandlePlayerJump;// same but for player move in boss fight
 
     }
 
@@ -108,7 +108,7 @@ public class EventManager : MonoBehaviour
     {
         PlayerInteraction.OnCookieEaten -= updateHUDFromCookieAction; //  stops the cookie listen
         BossController.OnHandMovementStarted -= HandleHandMovement;   // same but for boss hands
-        Boss_PlayerController.OnPlayerJumpStarted -= HandlePlayerJump;
+        Boss_PlayerController.OnPlayerJumpStarted -= HandlePlayerJump;// same but for player move in boss fight
 
     }
 
@@ -273,11 +273,11 @@ public class EventManager : MonoBehaviour
     {
         if (bossController.IsAttacking == true)
         {
-            if ((LeftHandTarget && RightHandTarget == boss_PlayerController.targetPosition) || (LeftHandTarget || RightHandTarget == boss_PlayerController.targetPosition))
-            {
+            //if ((LeftHandTarget && RightHandTarget == PlayerJumpTarget) || (LeftHandTarget || RightHandTarget == PlayerJumpTarget))
+            //{
                 MaxCookies--;
                 DisplayInfoMessage("oh Noes the Dangle Dragon has snached a cookie!");
-            }
+            //}
         }
         else
         {
