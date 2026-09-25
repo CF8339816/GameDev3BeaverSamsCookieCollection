@@ -35,6 +35,8 @@ public class EventManager : MonoBehaviour
     private PlayerInteraction playerInteraction;
     private AddAudio addAudio;
     private IconVisibility iconVisibility;
+    private BossController bossController;
+    private Boss_PlayerController boss_playerController;
 
     public int MaxItemPerLevel;
     public float newTimeAllocation;
@@ -45,6 +47,9 @@ public class EventManager : MonoBehaviour
     private GameObject currentActiveLevel;
     private GameObject activeLevel;
 
+    public Vector3 LeftHandTarget { get; private set; }
+    public Vector3 RightHandTarget { get; private set; }
+    public Vector3 PlayerJumpTarget { get; private set; }
     private IEnumerator ClearTextBoxAfterDelay(float delay) //setting up diisplay timer for info box messages
     {
         yield return new WaitForSeconds(delay);  // allows for time delay set in seconds
@@ -52,7 +57,29 @@ public class EventManager : MonoBehaviour
         textInfoBox.text = ""; //Sets cleared message
     }
 
-   private IEnumerator ResetAndStartTimer()
+    private void HandleHandMovement(GameObject hand, Vector3 targetPosition)
+    {
+        Debug.Log($"{hand.name} is moving to {targetPosition}");
+
+      
+        if (hand.name.Contains("Left"))// cashes positions
+        {
+            LeftHandTarget = targetPosition;
+        }
+        else
+        {
+            RightHandTarget = targetPosition;
+        }
+    }
+
+    private void HandlePlayerJump(Vector3 targetPosition)
+    {
+        // 2. Safely stored without touching the Boss variables!
+        PlayerJumpTarget = targetPosition;
+
+        Debug.Log($"EventManager caught Player jumping to: {PlayerJumpTarget}");
+    }
+    private IEnumerator ResetAndStartTimer()
     {
         while (Countdown > 0)
         {
@@ -72,11 +99,17 @@ public class EventManager : MonoBehaviour
     private void OnEnable()
     {
         PlayerInteraction.OnCookieEaten += updateHUDFromCookieAction; //listens for player's cookie interaction
+        BossController.OnHandMovementStarted += HandleHandMovement;  // same but for boss hands
+        Boss_PlayerController.OnPlayerJumpStarted += HandlePlayerJump;
+
     }
 
     private void OnDisable()
     {
         PlayerInteraction.OnCookieEaten -= updateHUDFromCookieAction; //  stops the cookie listen
+        BossController.OnHandMovementStarted -= HandleHandMovement;   // same but for boss hands
+        Boss_PlayerController.OnPlayerJumpStarted -= HandlePlayerJump;
+
     }
 
 
@@ -97,6 +130,8 @@ public class EventManager : MonoBehaviour
     {
         checkTimer();
         SetItemsValue();
+
+        CheckBossGrab();
     }
 
     public void DisplayInfoMessage(string message)// formats info box messages to utalize display clear timer instead of being on screen dynamically
@@ -231,6 +266,27 @@ public class EventManager : MonoBehaviour
         {
             DisplayInfoMessage("You have collected all the cookies on that stage! Let's Collect more here!");
             MaxItemPerLevel = 20;
+        }
+    }
+
+    public void CheckBossGrab()
+    {
+        if (bossController.IsAttacking == true)
+        {
+            if ((LeftHandTarget && RightHandTarget == boss_PlayerController.targetPosition) || (LeftHandTarget || RightHandTarget == boss_PlayerController.targetPosition))
+            {
+                MaxCookies--;
+                DisplayInfoMessage("oh Noes the Dangle Dragon has snached a cookie!");
+            }
+        }
+        else
+        {
+            DisplayInfoMessage("You dodged the Dangle Dragon's grabbie grab it got no cookies this time");
+        }
+
+        if (bossController.IsAttacking == false)
+        {
+            gameExitManager.Wincheck();
         }
     }
 

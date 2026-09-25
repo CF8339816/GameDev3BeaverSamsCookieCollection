@@ -2,6 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+/// <summary>
+/// CF- added a proxy is attacking bool value that will alow the event manager to check the bool status externally wiuthout the ability to change it 
+/// </summary>
 
 public class BossController : MonoBehaviour
 {
@@ -38,6 +41,11 @@ public class BossController : MonoBehaviour
     [SerializeField] float _windUpPauseDuration = 0.5f;
 
     bool _isAttacking = false;
+    public bool IsAttacking => _isAttacking;  /// CF added this to give other scripts something to check against that they cannot change
+
+    public static event Action<GameObject, Vector3> OnHandMovementStarted; /// CF added this to give other scripts something to check against 
+
+
 
     System.Random rand = new System.Random();
 
@@ -170,6 +178,9 @@ public class BossController : MonoBehaviour
 
     IEnumerator MoveHand(GameObject hand, Vector3 targetPosition)
     {
+       
+        OnHandMovementStarted?.Invoke(hand, targetPosition); /// CF added this to give other scripts something to check against 
+
         while (Vector3.Distance(hand.transform.position, targetPosition) > 0.001f)
         {
             hand.transform.position = Vector3.MoveTowards(
