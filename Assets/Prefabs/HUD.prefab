@@ -1162,19 +1162,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa8a078f0e42b0f4aafef271d9e2ebe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageTimer
-  CookieCountPerLevel: {fileID: 8813344847368610404}
-  InfoBox: {fileID: 1137277714509925755}
-  CalorieCounter: {fileID: 8794817113261769319}
   levelCountdownText: {fileID: 1880711187278183548}
   textItemsCount: {fileID: 8813344847368610404}
   textInfoBox: {fileID: 1137277714509925755}
-  MaxCalories: 40
-  MaxCookies: 45
   LevelTimer: 30
   Countdown: 0
   levelManager: {fileID: 0}
+  gameExitManager: {fileID: 0}
+  playerInteraction: {fileID: 0}
+  addAudio: {fileID: 0}
+  iconVisibility: {fileID: 0}
+  bossController: {fileID: 0}
+  boss_playerController: {fileID: 0}
   MaxItemPerLevel: 0
-  newTimeAllocation: 30
   ItemsCount: 0
 --- !u!1 &5599357316027738658
 GameObject:
@@ -1485,7 +1485,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1052687079664927721
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1816,19 +1816,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa8a078f0e42b0f4aafef271d9e2ebe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventManager
-  CookieCountPerLevel: {fileID: 8813344847368610404}
-  InfoBox: {fileID: 1137277714509925755}
-  CalorieCounter: {fileID: 8794817113261769319}
   levelCountdownText: {fileID: 1880711187278183548}
   textItemsCount: {fileID: 8813344847368610404}
   textInfoBox: {fileID: 1137277714509925755}
-  MaxCalories: 40
-  MaxCookies: 45
   LevelTimer: 30
   Countdown: 0
   levelManager: {fileID: 56358609022989947, guid: dd1b619ae4d7d174bb4e5e6ee804dde4, type: 3}
+  gameExitManager: {fileID: 0}
+  playerInteraction: {fileID: 0}
+  addAudio: {fileID: 0}
+  iconVisibility: {fileID: 0}
+  bossController: {fileID: 0}
+  boss_playerController: {fileID: 0}
   MaxItemPerLevel: 0
-  newTimeAllocation: 30
   ItemsCount: 0
 --- !u!114 &5359015082234402116
 MonoBehaviour:

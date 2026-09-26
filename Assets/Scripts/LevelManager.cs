@@ -1,6 +1,4 @@
 using System.Collections;
-using Unity.VectorGraphics;
-using UnityEngine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,198 +9,132 @@ using UnityEngine.SceneManagement;
 /// team: Chris French, Roman Zhurakhov, Myranda Roy
 /// Coder current script: Chris French Second Year NSCC Game Programming 
 /// Additions / annotations:
-/// code review Roman Zhurakhov
+/// code review Roman Zhurakhov - converted level switching to scene loading,
+/// and cookie targets are now defined per level (9 / 15 / 21).
 /// </summary>
 #endregion
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
-   
-    public GameObject Level01;
-    public GameObject Level02;
-    public GameObject Level03;
-    public GameObject BossStage;
-    public GameObject Tutorial;
-    public GameObject Menu;
-    public GameObject currentActiveLevel;
-    private LevelGeneration levelGeneration;
-    public GameObject levelToLoad;
-    private EventManager eventManager;  //added to ensure level manager can find the event manager to tell it when to initalize stages
+
+    [System.Serializable]
+    public struct LevelDefinition
+    {
+        public string SceneName;
+        public int CookieTarget;
+    }
+
+    [Header("Level order and cookie goals per level")]
+    [SerializeField] private LevelDefinition[] _levels = new LevelDefinition[]
+    {
+        new LevelDefinition { SceneName = "Level01", CookieTarget = 9 },
+        new LevelDefinition { SceneName = "Level02", CookieTarget = 15 },
+        new LevelDefinition { SceneName = "Level03", CookieTarget = 21 },
+    };
+
+    [SerializeField] private string _bossSceneName = "BossStage";
+    [SerializeField] private string _tutorialSceneName = "Tutorial";
+    [SerializeField] private string _menuSceneName = "Menu";
+
+    [SerializeField] private EventManager eventManager; //added to ensure level manager can find the event manager to tell it when to initalize stages
 
     public GameObject HUD;
 
-    public void Awake()//added to ensure level manager runs prior to event manager
+    private int _currentLevelIndex = -1;
+    private string _currentSceneName;
+
+    public void Awake()
     {
-        currentActiveLevel = Menu;
-        eventManager = Object.FindFirstObjectByType<EventManager>();// find the event manager
+        if (Instance == null)
+            Instance = this;
+
+        if (eventManager == null)
+            eventManager = FindFirstObjectByType<EventManager>();
     }
 
     public void Start()
     {
-        CloseAllScreens();// ensures no other active scenes at start 
-                          
-        Menu.SetActive(true);// sets default starting stage
-        
-    }
-    public void CloseAllScreens() //closes all levels
-    {
-        
-        Level01.SetActive(false);
-        Level02.SetActive(false);
-        Level03.SetActive(false);
-       BossStage.SetActive(false);
-        Tutorial.SetActive(false);
-        Menu.SetActive(false);
         HUD.SetActive(false);
+        LoadMenu();
     }
-    public void levelChange(GameObject levelToLoad) // processes level change 
+
+    private IEnumerator LoadSceneRoutine(string sceneName, bool showHUD, int cookieTarget)
     {
-        CloseAllScreens();
-
-        currentActiveLevel.SetActive(false);
-        levelToLoad.SetActive(true);
-        currentActiveLevel = levelToLoad;
-
-
-        if (eventManager != null)// tells event manager to load new level 
+        if (!string.IsNullOrEmpty(_currentSceneName))
         {
-            eventManager.OnLevelChange(currentActiveLevel);
+            yield return SceneManager.UnloadSceneAsync(_currentSceneName);
         }
 
+        yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        _currentSceneName = sceneName;
+
+        HUD.SetActive(showHUD);
+
+        // Generate cookies for this level, capped at cookieTarget.
+        LevelGeneration levelGeneration = FindFirstObjectByType<LevelGeneration>();
+        if (levelGeneration != null)
+        {
+            levelGeneration.GenerateLevel(cookieTarget);
+        }
+
+        if (eventManager != null)
+        {
+            eventManager.OnLevelChange(cookieTarget);
+        }
     }
 
-    public void LoadNextChronologicalLevel()  //  loads stages in next chronological order
+    public void LoadNextChronologicalLevel()  // loads stages in next chronological order
     {
-        if (currentActiveLevel == Level01)
-        {
-            levelChange(Level02);
-        }
-        else if (currentActiveLevel == Level02)
-        {
-            levelChange(Level03);
-        }
+        int nextIndex = _currentLevelIndex + 1;
 
+        if (nextIndex < _levels.Length)
+        {
+            LoadLevelByIndex(nextIndex);
+        }
+        else
+        {
+            // Ran out of numbered levels - go to the boss stage.
+            LoadBoss();
+        }
     }
 
-    public void onStart(GameObject Level01) // processes level change 
+    public void LoadLevelByIndex(int index)
     {
-        CloseAllScreens();
-
-        currentActiveLevel.SetActive(false);
-        Level01.SetActive(true);
-        currentActiveLevel = Level01;
-
-
-        if (eventManager != null)// tells event manager to load new level 
+        if (index < 0 || index >= _levels.Length)
         {
-            eventManager.OnLevelChange(currentActiveLevel);
+            Debug.LogError($"LevelManager: level index {index} is out of range.");
+            return;
         }
 
+        _currentLevelIndex = index;
+        LevelDefinition level = _levels[index];
+        StartCoroutine(LoadSceneRoutine(level.SceneName, showHUD: true, level.CookieTarget));
     }
 
-    public void onMenu(GameObject Menu) // processes level change 
+    public void LoadMenu()
     {
-        CloseAllScreens();
-
-        currentActiveLevel.SetActive(false);
-        Menu.SetActive(true);
-        currentActiveLevel = Menu;
-
-
-        if (eventManager != null)// tells event manager to load new level 
-        {
-            eventManager.OnLevelChange(currentActiveLevel);
-        }
-
+        _currentLevelIndex = -1;
+        StartCoroutine(LoadSceneRoutine(_menuSceneName, showHUD: false, cookieTarget: 0));
     }
-    public void onLevel01(GameObject Level01) // processes level change 
+
+    public void LoadTutorial()
     {
-        CloseAllScreens();
-
-        currentActiveLevel.SetActive(false);
-        Level01.SetActive(true);
-        HUD.SetActive(true);
-        currentActiveLevel = Level01;
-
-
-        if (eventManager != null)// tells event manager to load new level 
-        {
-            eventManager.OnLevelChange(currentActiveLevel);
-        }
-
+        _currentLevelIndex = -1;
+        StartCoroutine(LoadSceneRoutine(_tutorialSceneName, showHUD: false, cookieTarget: 0));
     }
 
-    public void onLevel02(GameObject Level02) // processes level change 
+    public void LoadBoss()
     {
-        CloseAllScreens();
-
-        currentActiveLevel.SetActive(false);
-        Level02.SetActive(true);
-        HUD.SetActive(true); 
-        currentActiveLevel = Level02;
-
-
-        if (eventManager != null)// tells event manager to load new level 
-        {
-            eventManager.OnLevelChange(currentActiveLevel);
-        }
-
+        _currentLevelIndex = _levels.Length; // past the last numbered level
+        StartCoroutine(LoadSceneRoutine(_bossSceneName, showHUD: true, cookieTarget: 0));
     }
 
-    public void onLevel03(GameObject Level03) // processes level change 
-    {
-        CloseAllScreens();
-
-        currentActiveLevel.SetActive(false);
-        Level03.SetActive(true);
-        HUD.SetActive(true);
-        currentActiveLevel = Level03;
-
-
-        if (eventManager != null)// tells event manager to load new level 
-        {
-            eventManager.OnLevelChange(currentActiveLevel);
-        }
-
-    }
-
-    public void onTutorial(GameObject Tutorial) // processes level change 
-    {
-        CloseAllScreens();
-
-        currentActiveLevel.SetActive(false);
-        Tutorial.SetActive(true);
-        currentActiveLevel = Tutorial;
-
-
-        if (eventManager != null)// tells event manager to load new level 
-        {
-            eventManager.OnLevelChange(currentActiveLevel);
-        }
-
-    }
-
-
-    public void onBoss(GameObject BossStage) // processes level change 
-    {
-        CloseAllScreens();
-
-        currentActiveLevel.SetActive(false);
-        BossStage.SetActive(true);
-        HUD.SetActive(true);
-        currentActiveLevel = BossStage;
-
-
-        if (eventManager != null)// tells event manager to load new level 
-        {
-            eventManager.OnLevelChange(currentActiveLevel);
-        }
-
-    }
-
-
-
-
-
+    // Convenience wrappers matching old UI Button hookups (Level01/02/03 buttons, etc.)
+    public void onLevel01() => LoadLevelByIndex(0);
+    public void onLevel02() => LoadLevelByIndex(1);
+    public void onLevel03() => LoadLevelByIndex(2);
+    public void onTutorial() => LoadTutorial();
+    public void onMenu() => LoadMenu();
+    public void onBoss() => LoadBoss();
 }

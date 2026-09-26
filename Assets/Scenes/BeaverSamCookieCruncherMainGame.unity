@@ -5717,6 +5717,17 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!114 &1579074498 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5359015082234402116, guid: 4946125f362e32b4890d4afa14d66a2d, type: 3}
+  m_PrefabInstance: {fileID: 7974272067950017572}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18c0bfa5d1069c4799d5c7e08432fb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IconVisibility
 --- !u!43 &1605689993
 Mesh:
   m_ObjectHideFlags: 0
@@ -7152,6 +7163,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e98c75b21fa7bfd4eb785ef6c43f5b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelManager
+--- !u!114 &1753150771 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5481489054419289085, guid: dd1b619ae4d7d174bb4e5e6ee804dde4, type: 3}
+  m_PrefabInstance: {fileID: 7496365765822666476}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a8c29fca2c3214494c8dcaff99dc86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AddAudio
 --- !u!43 &1754003553
 Mesh:
   m_ObjectHideFlags: 0
@@ -7874,6 +7896,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4458301259272460126, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
   m_PrefabInstance: {fileID: 5693135217489578387}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1891929297 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7937441606735528648, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+  m_PrefabInstance: {fileID: 5693135217489578387}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc50de353d598d4a802bf708d18cf29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameExitManager
 --- !u!43 &1925814871
 Mesh:
   m_ObjectHideFlags: 0
@@ -9603,6 +9636,30 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 22448724}
+    - target: {fileID: 86506109521569837, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+      propertyPath: '_roomLengths.Array.data[0]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 86506109521569837, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+      propertyPath: '_roomLengths.Array.data[1]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 86506109521569837, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+      propertyPath: '_roomLengths.Array.data[2]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 86506109521569837, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+      propertyPath: '_roomPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3951874878627275011, guid: 2ce2c0df32f9d134785c4fa0796c2d0a, type: 3}
+    - target: {fileID: 86506109521569837, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+      propertyPath: '_roomPrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 3173425716432253980, guid: 17fc7ea32b92eba42ba17618eb8baa1e, type: 3}
+    - target: {fileID: 86506109521569837, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+      propertyPath: '_roomPrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 433452980835205956, guid: d2b851c54a6d9b849afb3781e9dc3fa3, type: 3}
     - target: {fileID: 112368419862652111, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -9783,6 +9840,30 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1963212191}
+    - target: {fileID: 3285618040559167666, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+      propertyPath: '_roomLengths.Array.data[0]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3285618040559167666, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+      propertyPath: '_roomLengths.Array.data[1]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3285618040559167666, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+      propertyPath: '_roomLengths.Array.data[2]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3285618040559167666, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+      propertyPath: '_roomPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3951874878627275011, guid: 2ce2c0df32f9d134785c4fa0796c2d0a, type: 3}
+    - target: {fileID: 3285618040559167666, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+      propertyPath: '_roomPrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 3173425716432253980, guid: 17fc7ea32b92eba42ba17618eb8baa1e, type: 3}
+    - target: {fileID: 3285618040559167666, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+      propertyPath: '_roomPrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 433452980835205956, guid: d2b851c54a6d9b849afb3781e9dc3fa3, type: 3}
     - target: {fileID: 3394603397345584912, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -9923,6 +10004,30 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1659024471}
+    - target: {fileID: 6451820576151720064, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+      propertyPath: '_roomLengths.Array.data[0]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451820576151720064, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+      propertyPath: '_roomLengths.Array.data[1]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451820576151720064, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+      propertyPath: '_roomLengths.Array.data[2]'
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6451820576151720064, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+      propertyPath: '_roomPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3951874878627275011, guid: 2ce2c0df32f9d134785c4fa0796c2d0a, type: 3}
+    - target: {fileID: 6451820576151720064, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+      propertyPath: '_roomPrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 3173425716432253980, guid: 17fc7ea32b92eba42ba17618eb8baa1e, type: 3}
+    - target: {fileID: 6451820576151720064, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
+      propertyPath: '_roomPrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 433452980835205956, guid: d2b851c54a6d9b849afb3781e9dc3fa3, type: 3}
     - target: {fileID: 6466736512125268969, guid: 8001593cefd1e3a4390b8dfd42146423, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -10144,6 +10249,10 @@ PrefabInstance:
       propertyPath: BossStage
       value: 
       objectReference: {fileID: 534840348}
+    - target: {fileID: 56358609022989947, guid: dd1b619ae4d7d174bb4e5e6ee804dde4, type: 3}
+      propertyPath: levelToLoad
+      value: 
+      objectReference: {fileID: 649628058}
     - target: {fileID: 4753383144089034656, guid: dd1b619ae4d7d174bb4e5e6ee804dde4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1215.218
@@ -10315,9 +10424,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1439441029324295875, guid: 4946125f362e32b4890d4afa14d66a2d, type: 3}
+      propertyPath: addAudio
+      value: 
+      objectReference: {fileID: 1753150771}
+    - target: {fileID: 1439441029324295875, guid: 4946125f362e32b4890d4afa14d66a2d, type: 3}
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 1743134073}
+    - target: {fileID: 1439441029324295875, guid: 4946125f362e32b4890d4afa14d66a2d, type: 3}
+      propertyPath: iconVisibility
+      value: 
+      objectReference: {fileID: 1579074498}
+    - target: {fileID: 1439441029324295875, guid: 4946125f362e32b4890d4afa14d66a2d, type: 3}
+      propertyPath: gameExitManager
+      value: 
+      objectReference: {fileID: 1891929297}
     - target: {fileID: 2756385476391456083, guid: 4946125f362e32b4890d4afa14d66a2d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
