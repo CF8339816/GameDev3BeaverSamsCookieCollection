@@ -4,6 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// CF- added a proxy is attacking bool value that will alow the event manager to check the bool status externally wiuthout the ability to change it 
+/// </summary>
+
 public class Boss_PlayerController : MonoBehaviour
 {
     [SerializeField] List<Transform> _jumpPositions = new List<Transform>();
@@ -13,6 +17,8 @@ public class Boss_PlayerController : MonoBehaviour
     [SerializeField] float _jumpHeight = 1f;
 
     Coroutine _jumpRoutine;
+
+    public static event Action<Vector3> OnPlayerJumpStarted; /// CF added this to give other scripts something to check against 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,6 +49,8 @@ public class Boss_PlayerController : MonoBehaviour
 
     IEnumerator JumpRoutine(Vector3 targetPosition)
     {
+        OnPlayerJumpStarted?.Invoke(targetPosition);  /// CF added this to give other scripts something to check against 
+
         Vector3 startPosition = transform.position;
         float elapsed = 0f;
 

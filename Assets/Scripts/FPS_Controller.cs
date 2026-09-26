@@ -29,7 +29,6 @@ public class FPS_Controller : MonoBehaviour
     private float mouseX;
 
     [Header("Crouching")]
-    [SerializeField] private bool canCrouch = true;
     [SerializeField] private float crouchingTime;
     [SerializeField] private float crouchHeight;
     [SerializeField] private float normalHeight;
@@ -66,9 +65,6 @@ public class FPS_Controller : MonoBehaviour
     // previous position for velocity calculation
     private Vector3 previousPosition;
 
-    // world-space offset of the capsule's bottom relative to the transform,
-    // captured from the authored Center/Height so we never assume pivot-at-feet
-    private float footOffset;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -78,11 +74,8 @@ public class FPS_Controller : MonoBehaviour
 
         if (controller != null)
         {
-            // preserve the bottom position that was authored in the Inspector
-            footOffset = controller.center.y - controller.height / 2f;
-
             controller.height = normalHeight;
-            controller.center = new Vector3(0, normalHeight / 2f + footOffset, 0);
+            controller.center = new Vector3(0, controller.height / 2f, 0);
 
             // slope limit increase
             controller.slopeLimit = 50f;
@@ -92,7 +85,7 @@ public class FPS_Controller : MonoBehaviour
 
         if (playerCamera != null)
         {
-            cameraOriginalLocalY = playerCamera.transform.localPosition.y;
+            cameraOriginalLocalY = 1.7f;
         }
 
         previousPosition = transform.position;
@@ -115,7 +108,7 @@ public class FPS_Controller : MonoBehaviour
             velocityPhysics.y = 0;
         }
 
-        if(canCrouch) Crouch();
+        Crouch();
         Jump();
 
         // --- speed management ---
@@ -255,7 +248,7 @@ public class FPS_Controller : MonoBehaviour
         }
 
         controller.height = newHeight;
-        controller.center = new Vector3(0, newHeight / 2f + footOffset, 0);
+        controller.center = new Vector3(0, controller.height / 2f, 0);
 
         if (playerCamera != null)
         {

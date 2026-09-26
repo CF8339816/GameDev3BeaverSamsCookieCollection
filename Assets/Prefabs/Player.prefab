@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 3b9c4caf798976b4ca6c0f2ad4e3a727, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -361,7 +361,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 447830e589f629149b6f02e091f9a264, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -454,10 +454,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   _leftHand: {fileID: 8999490384976986072}
   _rightHand: {fileID: 3455440319553761884}
+  playerCamera: {fileID: 0}
+  cameraOffset: {x: 0, y: 0, z: 0}
+  leftHandRestOffset: {x: -0.2, y: -0.25, z: 0.5}
+  rightHandRestOffset: {x: 0.2, y: -0.25, z: 0.5}
+  handsLayerName: Hands
+  handsNearClip: 0.01
   wobbleSpeed: 8
   wobbleAmount: 0.02
   wobbleSmoothing: 8
   reachOffset: {x: 0, y: -0.05, z: 0.4}
+  grabSpread: {x: 0.08, y: 0, z: 0}
   reachDuration: 0.25
   holdDuration: 0.15
 --- !u!1 &7366591659816996649

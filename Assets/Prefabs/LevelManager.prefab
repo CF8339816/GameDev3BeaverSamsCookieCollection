@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8678454259066806289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4753383144089034656}
+  - component: {fileID: 56358609022989947}
+  - component: {fileID: 5481489054419289085}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4753383144089034656
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8678454259066806289}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &56358609022989947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8678454259066806289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e98c75b21fa7bfd4eb785ef6c43f5b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelManager
+  Level01: {fileID: 875565167220121048, guid: a56618425eed74a419bebf131f0ebd93, type: 3}
+  Level02: {fileID: 8048021801480957354, guid: e899aef80e8336949bc688361041197d, type: 3}
+  Level03: {fileID: 6866605929030641539, guid: acc16fdf3facc1a429a1e0ad2166ce95, type: 3}
+  BossStage: {fileID: 4763642357381298945, guid: 5d4dda320ea304741ad0175ebf00389c, type: 3}
+  Tutorial: {fileID: 4257261511968654628, guid: 7ad7c3b2c93b749429c8a9056d37ccae, type: 3}
+  Menu: {fileID: 7612287411338057173, guid: bc399e329a69a094c8f1dec75cb6b88a, type: 3}
+  currentActiveLevel: {fileID: 0}
+  levelToLoad: {fileID: 0}
+  HUD: {fileID: 7755556087075648803, guid: 4946125f362e32b4890d4afa14d66a2d, type: 3}
+--- !u!114 &5481489054419289085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8678454259066806289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a8c29fca2c3214494c8dcaff99dc86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AddAudio
+  cookieNomAudio: {fileID: 8300000, guid: 99d61c43a3f2fee43951fe9f1cce6b75, type: 3}
+  BossFightAudio: {fileID: 8300000, guid: 5e4133a4e98da594b84307ac67052d9d, type: 3}
+  MenuAudio: {fileID: 8300000, guid: 1487f4b4d900a62478296b4345c0e86b, type: 3}
+  GameLossAudio: {fileID: 8300000, guid: 2c768eefae311734db5070e12fb92f2d, type: 3}
+  StageAudio: {fileID: 8300000, guid: 35cec2b836bb5e247bf54cac84bbbb2a, type: 3}
+  MiscAudio: {fileID: 8300000, guid: 6e1f6c624dec58b4e8f6d3cdea4b5b0f, type: 3}
+  startingVolume: 0.35
+  volumeSlider: {fileID: 0}
