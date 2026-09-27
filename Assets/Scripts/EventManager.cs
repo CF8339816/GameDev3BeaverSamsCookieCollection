@@ -70,12 +70,13 @@ public class EventManager : MonoBehaviour
     }
     private void Awake()
     {
-        delay = 3;
+      
         addAudio = Object.FindFirstObjectByType<AddAudio>();// initalises 
         iconVisibility = Object.FindFirstObjectByType<IconVisibility>();// initalizes
     }
     void Start()
-    {
+    { 
+        delay = 3;
         CalorieCounter.value = 0;
         CalorieCounter.minValue = 0;
         CalorieCounter.maxValue = 15;

@@ -110,7 +110,7 @@ public class LevelManager : MonoBehaviour
     public void onStart() // processes level change 
     {       
         currentActiveLevel.SetActive(false);
-        Level02.SetActive(true);
+        Level01.SetActive(true);
         HUD.SetActive(true);
         currentActiveLevel = Level01;
         Cursor.visible = false;

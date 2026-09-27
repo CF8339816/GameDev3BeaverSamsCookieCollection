@@ -1,9 +1,8 @@
 
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
-using JetBrains.Annotations;
+
 
 #region coder & project
 /// <summary>
@@ -111,10 +110,19 @@ public class AlphaPOC_BossCombatController : MonoBehaviour
     }
     public void DodgeChoice()
     {
-        DisplayBossFightMessage("\u001b[38;2;255;165;0mDangle is about to grabbie grab which way do you dodge\n 1 for left, 2 for stay still 3 for right");
-        if (Input.GetKeyDown(KeyCode.Alpha1)) { DodgeSpot = 1; }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) { DodgeSpot = 2; }
-        if (Input.GetKeyDown(KeyCode.Alpha3)) { DodgeSpot = 3; }
+        DisplayBossFightMessage("Dangle is about to grabbie grab which way do you dodge\n 1 for left, 2 for stay still 3 for right");
+        if (Input.GetKeyDown(KeyCode.Alpha1)) 
+        { 
+            DodgeSpot = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        { 
+            DodgeSpot = 2; 
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3)) 
+        {
+            DodgeSpot = 3;
+        }
      }
     public void updatePatience()
     {
@@ -126,9 +134,28 @@ public class AlphaPOC_BossCombatController : MonoBehaviour
             Quit.SetActive(true);
             Restart.SetActive(true);
             Menu.SetActive(true);
-            
+            Wincheck();
         }
         else { }
     }
+
+
+    public void Wincheck()
+    {
+        if (eventManager.ItemsCount >= eventManager.MaxCalories)
+        {
+            DisplayBossFightMessage("You have managed to hold on to enough cookies for the winter you survive your hibernation!");
+        }
+        else
+        {
+          DisplayBossFightMessage("Try as you might you could not defeat the Dangle Dragon,\n too many of your cookies were 'grabbie grabbed' \n you just don't have the calories available to survive the winter, you almost make it but freeze to death in early spring...  \n you are mourned by the other beavers who thought you were a little wierd anyway");
+            addAudio.OnLoss();
+        }
+
+    }
+
+
+
+
 
 }

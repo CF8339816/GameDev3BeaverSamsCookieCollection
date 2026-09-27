@@ -21,9 +21,9 @@ public class GameExitManager : MonoBehaviour
     public TextMeshProUGUI exitCountdownText;
     private float Countdown;
     private bool isExiting = false;
-    private EventManager eventManager;
-    private AlphaPOC_BossCombatController alphaPOC_BossCombatController;
-    private AddAudio addAudio;
+    //private EventManager eventManager;
+    //private AlphaPOC_BossCombatController alphaPOC_BossCombatController;
+    //private AddAudio addAudio;
 
     void Awake()
     {
@@ -32,24 +32,24 @@ public class GameExitManager : MonoBehaviour
         {
             exitCountdownText.text = "";
         }
-         addAudio = Object.FindFirstObjectByType<AddAudio>(); // initalizes
-        eventManager = Object.FindFirstObjectByType<EventManager>(); // initalizes
-        alphaPOC_BossCombatController = Object.FindFirstObjectByType<AlphaPOC_BossCombatController>();// find and initalize
+        // addAudio = Object.FindFirstObjectByType<AddAudio>(); // initalizes
+        //eventManager = Object.FindFirstObjectByType<EventManager>(); // initalizes
+        //alphaPOC_BossCombatController = Object.FindFirstObjectByType<AlphaPOC_BossCombatController>();// find and initalize
 
     }
-    public void Wincheck()
-    {
-        if (eventManager.ItemsCount >= eventManager.MaxCalories)
-        {
-            alphaPOC_BossCombatController.DisplayBossFightMessage("You have managed to hold on to enough cookies for the winter you survive your hibernation!");
-        }
-        else
-        {
-            alphaPOC_BossCombatController.DisplayBossFightMessage("Try as you might you could not defeat the Dangle Dragon,\n too many of your cookies were 'grabbie grabbed' \n you just don't have the calories available to survive the winter, you almost make it but freeze to death in early spring...  \n you are mourned by the other beavers who thought you were a little wierd anyway");
-            addAudio.OnLoss();
-        }
+    //public void Wincheck()
+    //{
+    //    if (eventManager.ItemsCount >= eventManager.MaxCalories)
+    //    {
+    //        alphaPOC_BossCombatController.DisplayBossFightMessage("You have managed to hold on to enough cookies for the winter you survive your hibernation!");
+    //    }
+    //    else
+    //    {
+    //        alphaPOC_BossCombatController.DisplayBossFightMessage("Try as you might you could not defeat the Dangle Dragon,\n too many of your cookies were 'grabbie grabbed' \n you just don't have the calories available to survive the winter, you almost make it but freeze to death in early spring...  \n you are mourned by the other beavers who thought you were a little wierd anyway");
+    //        addAudio.OnLoss();
+    //    }
 
-    }
+    //}
 
       public void Ongameexit()
     {
