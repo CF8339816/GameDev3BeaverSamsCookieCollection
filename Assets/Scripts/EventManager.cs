@@ -196,6 +196,7 @@ public class EventManager : MonoBehaviour
         if (activeLevel == levelManager.Level01 || levelManager.Level02 || levelManager.Level03 ) //turn on visibility for Idle Icon  on levels 1,2 and 3 ... but off on menu boss and tutorial
         {
             iconVisibility.idleIcon.SetActive(true);
+            addAudio.OnStage();
         }
         else
         {
@@ -204,6 +205,23 @@ public class EventManager : MonoBehaviour
         Countdown = LevelTimer;
         StopTimerCoroutine();
         countdownCoroutine = StartCoroutine(ResetAndStartTimer());
+
+
+        if(activeLevel = levelManager.Boss)
+        {
+            addAudio.OnBoss();
+        }
+
+        if(activeLevel = levelManager.Menu)  
+        {
+            addAudio.OnMenu();
+        }
+
+        if (activeLevel = levelManager.Tutorial)
+        {
+            addAudio.OnMenu();
+        }
+
     }
 
     public void collectedItems()

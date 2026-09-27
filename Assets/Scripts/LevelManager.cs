@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour
     private LevelGeneration levelGeneration;
     public GameObject levelToLoad;
     private EventManager eventManager;  //added to ensure level manager can find the event manager to tell it when to initalize stages
-
+    private AddAudio addAudio;
     public GameObject HUD;
 
     public void Awake()//added to ensure level manager runs prior to event manager
@@ -196,7 +196,7 @@ public class LevelManager : MonoBehaviour
         Boss.SetActive(true);
         HUD.SetActive(true);
         currentActiveLevel = Boss;
-
+        
 
         if (eventManager != null)// tells event manager to load new level 
         {
