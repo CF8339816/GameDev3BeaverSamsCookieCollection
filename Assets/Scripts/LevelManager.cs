@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour
     public GameObject Level01;
     public GameObject Level02;
     public GameObject Level03;
-    public GameObject BossStage;
+    public GameObject Boss;
     public GameObject Tutorial;
     public GameObject Menu;
     public GameObject currentActiveLevel;
@@ -51,7 +51,7 @@ public class LevelManager : MonoBehaviour
         Level01.SetActive(false);
         Level02.SetActive(false);
         Level03.SetActive(false);
-       BossStage.SetActive(false);
+       Boss.SetActive(false);
         Tutorial.SetActive(false);
         Menu.SetActive(false);
         HUD.SetActive(false);
@@ -81,6 +81,10 @@ public class LevelManager : MonoBehaviour
         else if (currentActiveLevel == Level02)
         {
             levelChange(Level03);
+        }
+        else if (currentActiveLevel == Level03)
+        {
+            levelChange(Boss);
         }
 
     }
@@ -184,14 +188,14 @@ public class LevelManager : MonoBehaviour
     }
 
 
-    public void onBoss(GameObject BossStage) // processes level change 
+    public void onBoss(GameObject Boss) // processes level change 
     {
         CloseAllScreens();
 
         currentActiveLevel.SetActive(false);
-        BossStage.SetActive(true);
+        Boss.SetActive(true);
         HUD.SetActive(true);
-        currentActiveLevel = BossStage;
+        currentActiveLevel = Boss;
 
 
         if (eventManager != null)// tells event manager to load new level 
