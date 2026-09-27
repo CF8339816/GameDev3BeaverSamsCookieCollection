@@ -1,5 +1,6 @@
 using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class FPS_Controller : MonoBehaviour
 {
@@ -64,13 +65,42 @@ public class FPS_Controller : MonoBehaviour
 
     // previous position for velocity calculation
     private Vector3 previousPosition;
+   
+    
+    /// <summary>
+    /// added for cursor vis on  levels without player controller
+    /// as a redunndancy
+    /// 
+    /// </summary>
+    private LevelManager levelManager;
+    private EventManager eventManager;
+    public void Awake()//added to ensure level manager runs prior to event manager
+    {
+         eventManager = Object.FindFirstObjectByType<EventManager>();// find the event manager
+        levelManager = Object.FindFirstObjectByType<LevelManager>();// find the LevelManager
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        Cursor.visible = false;
+
+        if (eventManager.activeLevel == levelManager.Level01 || eventManager.activeLevel == levelManager.Level02 || eventManager.activeLevel == levelManager.Level03)
+        {
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+
 
         if (controller != null)
         {

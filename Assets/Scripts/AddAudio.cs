@@ -87,7 +87,8 @@ public class AddAudio: MonoBehaviour
     }
 
     public void OnNom()
-    {
+    {  
+        source.Stop();
         if (volumeSlider != null && source != null)// presets volume per new govenrences above
         {
             source.volume = volumeSlider.value;
@@ -95,12 +96,14 @@ public class AddAudio: MonoBehaviour
 
         if (source != null && source.clip != null)
         {
+         
             source.PlayOneShot(cookieNomAudio, 1.0f);//plays defined audio clip on ente of collider zone
         }
     }
 
     public void OnMenu()
-    {
+    { 
+        source.Stop();
         if (volumeSlider != null && source != null)// presets volume per new govenrences above
         {
             source.volume = volumeSlider.value;
@@ -108,11 +111,13 @@ public class AddAudio: MonoBehaviour
 
         if (source != null && source.clip != null)
         {
+            
             source.PlayOneShot(MenuAudio, 1.0f);//plays defined audio clip on ente of collider zone
         }
     }
     public void OnLoss()
-    {
+    {  
+        source.Stop();
         if (volumeSlider != null && source != null)// presets volume per new govenrences above
         {
             source.volume = volumeSlider.value;
@@ -120,12 +125,14 @@ public class AddAudio: MonoBehaviour
 
         if (source != null && source.clip != null)
         {
+          
             source.PlayOneShot(GameLossAudio, 1.0f);//plays defined audio clip on ente of collider zone
 
         }
     }
     public void OnStage()
     {
+        source.Stop();
         if (volumeSlider != null && source != null)// presets volume per new govenrences above
         {
             source.volume = volumeSlider.value;
@@ -133,12 +140,14 @@ public class AddAudio: MonoBehaviour
 
         if (source != null && source.clip != null)
         {
+            
             source.PlayOneShot(StageAudio, 1.0f);//plays defined audio clip on ente of collider zone
         }
     }
 
     public void OnBoss()
     {
+        source.Stop();
         if (volumeSlider != null && source != null)// presets volume per new govenrences above
         {
             source.volume = volumeSlider.value;
@@ -146,6 +155,7 @@ public class AddAudio: MonoBehaviour
 
         if (source != null && source.clip != null)
         {
+            
             source.PlayOneShot(BossFightAudio, 1.0f);//plays defined audio clip on ente of collider zone
         }
     }

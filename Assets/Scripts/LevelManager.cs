@@ -28,12 +28,14 @@ public class LevelManager : MonoBehaviour
     public GameObject levelToLoad;
     private EventManager eventManager;  //added to ensure level manager can find the event manager to tell it when to initalize stages
     private AddAudio addAudio;
+    private AlphaPOC_BossCombatController alphaPOC_BossCombatController;
     public GameObject HUD;
     public void Awake()//added to ensure level manager runs prior to event manager
     {
         currentActiveLevel = Menu;
         eventManager = Object.FindFirstObjectByType<EventManager>();// find the event manager
         addAudio = Object.FindFirstObjectByType<AddAudio>();// find the audio  adder
+        alphaPOC_BossCombatController = Object.FindFirstObjectByType<AlphaPOC_BossCombatController>();// find and initalize
     }
     public void Start()
     {
@@ -62,27 +64,32 @@ public class LevelManager : MonoBehaviour
         {
             eventManager.OnLevelChange(currentActiveLevel);
         }
-
-        if (levelToLoad == Level01 || levelToLoad == Level02 || levelToLoad == Level03 || levelToLoad == Boss)
+        if (levelToLoad == Level01 || levelToLoad == Level02 || levelToLoad == Level03 )
         {
             HUD.SetActive(true);
         }
         else
         {
-            HUD.SetActive(false); // Hide HUD for Menu/Tutorial
+            Cursor.visible = true; //  makes  cursor visible on stages without player controller           
+            Cursor.lockState = CursorLockMode.None;// unlocks  cursor for stags with no player  controller
+
+            HUD.SetActive(false); // Hide HUD for Menu/Tutorial/ boss
         }
-
-
         if (addAudio != null)// sets the audio per level 
         {
-            if (levelToLoad == Menu || levelToLoad == Tutorial) addAudio.OnMenu();
-            else if (levelToLoad == Boss) addAudio.OnBoss();
-            else addAudio.OnStage();
+            if (levelToLoad == Menu || levelToLoad == Tutorial) 
+            {
+                addAudio.OnMenu(); 
+            }
+            else if (levelToLoad == Boss) 
+            {
+                addAudio.OnBoss(); 
+            }
+            else 
+            { 
+                addAudio.OnStage();
+            }
         }
-
-
-
-
     }
     public void LoadNextChronologicalLevel()  //  loads stages in next chronological order
     {
@@ -100,23 +107,21 @@ public class LevelManager : MonoBehaviour
         }
     }
     public void onStart() // processes level change 
-    {
-       // CloseAllScreens();
+    {       
         currentActiveLevel.SetActive(false);
         Level01.SetActive(true);
-
+        HUD.SetActive(true);
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);
         }
     }
     public void onMenu() // processes level change 
-    {
-        //CloseAllScreens();
+    {   
         currentActiveLevel.SetActive(false);
         Menu.SetActive(true);
+        HUD.SetActive(false);
         currentActiveLevel = Menu;
-
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);
@@ -124,37 +129,31 @@ public class LevelManager : MonoBehaviour
     }
     public void onLevel01() // processes level change 
     {
-       // CloseAllScreens();
         currentActiveLevel.SetActive(false);
         Level01.SetActive(true);
-        HUD.SetActive(true);
-  
+        HUD.SetActive(true);  
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);
         }
     }
     public void onLevel02() // processes level change 
-    {
-       // CloseAllScreens();
+    {    
         currentActiveLevel.SetActive(false);
         Level02.SetActive(true);
         HUD.SetActive(true); 
-        currentActiveLevel = Level02;
- 
+        currentActiveLevel = Level02; 
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);
         }
     }
     public void onLevel03() // processes level change 
-    {
-      //  CloseAllScreens();
+    {    
         currentActiveLevel.SetActive(false);
         Level03.SetActive(true);
         HUD.SetActive(true);
-        currentActiveLevel = Level03;
-   
+        currentActiveLevel = Level03;   
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);
@@ -162,24 +161,21 @@ public class LevelManager : MonoBehaviour
     }
     public void onTutorial() // processes level change 
     {
-       // CloseAllScreens();
         currentActiveLevel.SetActive(false);
         Tutorial.SetActive(true);
-        currentActiveLevel = Tutorial;
-     
+        HUD.SetActive(false);
+        currentActiveLevel = Tutorial;     
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);
         }
     }
     public void onBoss() // processes level change 
-    {
-       // CloseAllScreens();
+    {  
         currentActiveLevel.SetActive(false);
         Boss.SetActive(true);
-        HUD.SetActive(true);
-        currentActiveLevel = Boss;
-     
+        HUD.SetActive(false);
+        currentActiveLevel = Boss;     
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);

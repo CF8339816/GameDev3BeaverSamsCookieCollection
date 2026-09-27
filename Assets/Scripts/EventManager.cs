@@ -38,9 +38,10 @@ public class EventManager : MonoBehaviour
     private int currentItems = 0;
     private int ItemPerLevelCount = 0;
     public int ItemsCount;
+    public float delay;
     private GameObject currentActiveLevel;
-    private GameObject activeLevel;
-    private IEnumerator ClearTextBoxAfterDelay(float delay) //setting up diisplay timer for info box messages
+   public GameObject activeLevel;
+    private IEnumerator ClearTextBoxAfterDelay() //setting up diisplay timer for info box messages
     {
         yield return new WaitForSeconds(delay);  // allows for time delay set in seconds
         textInfoBox.text = ""; //Sets cleared message
@@ -69,7 +70,7 @@ public class EventManager : MonoBehaviour
     }
     private void Awake()
     {
-      
+        delay = 3;
         addAudio = Object.FindFirstObjectByType<AddAudio>();// initalises 
         iconVisibility = Object.FindFirstObjectByType<IconVisibility>();// initalizes
     }
@@ -77,7 +78,7 @@ public class EventManager : MonoBehaviour
     {
         CalorieCounter.value = 0;
         CalorieCounter.minValue = 0;
-        CalorieCounter.maxValue = 40;
+        CalorieCounter.maxValue = 15;
         ItemPerLevelCount = 0;
         if (levelManager != null)
         {
@@ -96,7 +97,7 @@ public class EventManager : MonoBehaviour
         {
             StopCoroutine(activeTextTimer);
         }
-        activeTextTimer = StartCoroutine(ClearTextBoxAfterDelay(4f)); //starts newly defined timer (currently 4 sec)
+        activeTextTimer = StartCoroutine(ClearTextBoxAfterDelay()); //starts newly defined timer (currently 4 sec)
     }
     public void updateHUDFromCookieAction()
     {
@@ -142,33 +143,35 @@ public class EventManager : MonoBehaviour
     public void OnLevelChange(GameObject targetLevel)//manual  level change   and  reset
     {
         activeLevel = targetLevel;
-        TurnOnPlayer();
-        StartCoroutine(ResetAndStartTimer());
+          TurnOnPlayer();
+       
         setItemsPerLevel(); // sets  max ipl
        SetItemsValue();  // resets level collection counter
         if ((activeLevel == levelManager.Level01) || (activeLevel == levelManager.Level02) || (activeLevel == levelManager.Level03 ))//turn on visibility for Idle Icon  on levels 1,2 and 3 ... but off on menu boss and tutorial
         {
             iconVisibility.idleIcon.SetActive(true);
-            addAudio.OnStage();
+            addAudio.OnStage(); 
+             Countdown = LevelTimer;
+            StopTimerCoroutine();
+            countdownCoroutine = StartCoroutine(ResetAndStartTimer()); 
+           //StartCoroutine(ResetAndStartTimer());
         }
         else
         {
             iconVisibility.idleIcon.SetActive(false);
-        }
-        Countdown = LevelTimer;
-        StopTimerCoroutine();
-        countdownCoroutine = StartCoroutine(ResetAndStartTimer());
-        if (activeLevel == levelManager.Boss)
-        { 
-            addAudio.OnBoss();
-        }
-        if (activeLevel == levelManager.Menu) 
-        {
-            addAudio.OnMenu(); 
-        }
-        if (activeLevel == levelManager.Tutorial) 
-        { 
-            addAudio.OnMenu();
+            StopTimerCoroutine();
+            if (activeLevel == levelManager.Boss)
+            { 
+                addAudio.OnBoss();
+            }
+            if (activeLevel == levelManager.Menu) 
+            {
+                addAudio.OnMenu(); 
+            }
+            if (activeLevel == levelManager.Tutorial) 
+            { 
+                addAudio.OnMenu();
+            }
         }
     }
     public void collectedItems()
@@ -176,17 +179,20 @@ public class EventManager : MonoBehaviour
         currentItems = ItemsCount;  // sets slider value to collected value
         CalorieCounter.value = currentItems;// sets calery slider value to  currentcalories variable
         Debug.Log($"Collected: {currentItems}/{MaxCalories}"); //verifies  the item slider addition whenitems are picked up
-        if (currentItems >= MaxCookies)
+        if (activeLevel == levelManager.Level01 || activeLevel == levelManager.Level02 || activeLevel == levelManager.Level03)
         {
-            DisplayInfoMessage("you have collected all the items Needed  in the game  congrats you win");
-      }
-        if (currentItems >= MaxCalories)
-        {
-            DisplayInfoMessage("You have collected enough cookies for winter, there are still some more extras are good!");
-        }
-        if (currentItems < MaxCookies)// if items are not at game max checks for  if at level max for level change
-        {
-            whenMaxPerLevelItems();
+            if (currentItems >= MaxCookies)
+            {
+                DisplayInfoMessage("you have collected all the items Needed  in the game  congrats you win");
+            }
+            if (currentItems >= MaxCalories)
+            {
+                DisplayInfoMessage("You have collected enough cookies for winter, there are still some more extras are good!");
+            }
+            if (currentItems < MaxCookies)// if items are not at game max checks for  if at level max for level change
+            {
+                whenMaxPerLevelItems();
+            }
         }
     }
     public void whenMaxPerLevelItems() //Triggers stage change loads  next level and resets collection and sets max collection
@@ -204,22 +210,22 @@ public class EventManager : MonoBehaviour
         if (activeLevel == levelManager.Level01)
         {
             DisplayInfoMessage(" Let's Collect cookies here!");
-            MaxItemPerLevel = 10;
+            MaxItemPerLevel = 3;
         }
         else if (activeLevel == levelManager.Level02)
         {
             DisplayInfoMessage("You have collected all the cookies on that stage! Let's Collect more here!");
-            MaxItemPerLevel = 15;
+            MaxItemPerLevel = 6;
         }
         else if (activeLevel == levelManager.Level03)
         {
             DisplayInfoMessage("You have collected all the cookies on that stage! Let's Collect more here!");
-            MaxItemPerLevel = 20;
+            MaxItemPerLevel = 9;
         }
     }
     public void TurnOnPlayer()// sets the max collectable items per level to trrigger stage change
     {
-        if (activeLevel == levelManager.Level01 || activeLevel == levelManager.Level02 || activeLevel == levelManager.Level03 || activeLevel == levelManager.Boss)
+        if (activeLevel == levelManager.Level01 || activeLevel == levelManager.Level02 || activeLevel == levelManager.Level03 )
         {
             if (MenuCam) MenuCam.SetActive(false);
             if (player) player.SetActive(true);

@@ -23,7 +23,7 @@ public class AlphaPOC_BossCombatController : MonoBehaviour
     [SerializeField] public GameObject BossImage;
     [SerializeField] public int MaxPatience;
     public int DodgeSpot=2;
-   private LevelManager levelManager;
+    private LevelManager levelManager;
     private GameExitManager gameExitManager;
     private AddAudio addAudio;
     private EventManager eventManager;
@@ -57,13 +57,20 @@ public class AlphaPOC_BossCombatController : MonoBehaviour
     void Update()
     {
 
+        bossFight();
+
+
+    }
+
+    public void bossFight()
+    {
         if (MaxPatience > 0 && !iscombat)
         {
             StartCoroutine(SimulateTurnBasedCombat());
 
         }
-           
     }
+
 
     IEnumerator SimulateTurnBasedCombat()
     {
@@ -71,7 +78,7 @@ public class AlphaPOC_BossCombatController : MonoBehaviour
 
         DodgeChoice();
 
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(5.0f);
 
         CheckBossFight();
 
@@ -100,7 +107,7 @@ public class AlphaPOC_BossCombatController : MonoBehaviour
 
     public void DodgeChoice()
     {
-        eventManager.DisplayInfoMessage("Dangle is about to grabbie grab which way do you dodge\n 1 for left, 2 for stay still 3 for right");
+        eventManager.DisplayInfoMessage("\u001b[38;2;255;165;0mDangle is about to grabbie grab which way do you dodge\n 1 for left, 2 for stay still 3 for right");
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) { DodgeSpot = 1; }
         if (Input.GetKeyDown(KeyCode.Alpha2)) { DodgeSpot = 2; }
