@@ -1,6 +1,7 @@
-using TMPro;
-using UnityEngine;
 using System.Collections;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.UI;
 
 
@@ -21,49 +22,40 @@ public class GameExitManager : MonoBehaviour
     private float Countdown;
     private bool isExiting = false;
     private EventManager eventManager;
-    [SerializeField] public Button menu;
-    [SerializeField] public Button restart;
-    [SerializeField] public Button quit;
+    private AlphaPOC_BossCombatController alphaPOC_BossCombatController;
+    //[SerializeField] public Button menu;
+    //[SerializeField] public Button restart;
+    //[SerializeField] public Button quit;
 
     private AddAudio addAudio;
 
     void Awake()
     {
         Countdown = ExitDelay;
-
         if (exitCountdownText != null)
         {
             exitCountdownText.text = "";
         }
     }
-
-
-    
-
-
-
     public void Wincheck()
     {
         if (eventManager.ItemsCount >= eventManager.MaxCalories)
         {
-            eventManager.DisplayInfoMessage("You have managed to hold on to enough cookies for the winter you survive your hibernation!");
-
+            alphaPOC_BossCombatController.DisplayBossFightMessage("You have managed to hold on to enough cookies for the winter you survive your hibernation!");
         }
         else
         {
-            eventManager.DisplayInfoMessage("Try as you might you could not defeat the Dangle Dragon,\n too many of your cookies were 'grabbie grabbed' \n you just don't have the calories available to survive the winter, you almost make it but freeze to death in early spring...  \n you are mourned by the other beavers who thought you were a little wierd anyway");
+            alphaPOC_BossCombatController.DisplayBossFightMessage("Try as you might you could not defeat the Dangle Dragon,\n too many of your cookies were 'grabbie grabbed' \n you just don't have the calories available to survive the winter, you almost make it but freeze to death in early spring...  \n you are mourned by the other beavers who thought you were a little wierd anyway");
             addAudio.OnLoss();
         }
-
         ButtonVisisbility();
-
     }
 
     public void ButtonVisisbility()
     {
-        menu.enabled = true;
-        quit.enabled = true;
-        restart.enabled = true;
+        alphaPOC_BossCombatController.Quit.SetActive(false);
+        alphaPOC_BossCombatController.Restart.SetActive(false);
+        alphaPOC_BossCombatController.Menu.SetActive(false);
     }
 
 

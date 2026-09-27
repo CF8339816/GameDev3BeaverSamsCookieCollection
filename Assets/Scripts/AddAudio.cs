@@ -88,7 +88,7 @@ public class AddAudio: MonoBehaviour
 
     public void OnNom()
     {  
-        source.Stop();
+       
         if (volumeSlider != null && source != null)// presets volume per new govenrences above
         {
             source.volume = volumeSlider.value;

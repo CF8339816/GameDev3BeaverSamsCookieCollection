@@ -149,6 +149,7 @@ public class EventManager : MonoBehaviour
        SetItemsValue();  // resets level collection counter
         if ((activeLevel == levelManager.Level01) || (activeLevel == levelManager.Level02) || (activeLevel == levelManager.Level03 ))//turn on visibility for Idle Icon  on levels 1,2 and 3 ... but off on menu boss and tutorial
         {
+            ItemPerLevelCount = 0;
             iconVisibility.idleIcon.SetActive(true);
             addAudio.OnStage(); 
              Countdown = LevelTimer;
@@ -210,16 +211,19 @@ public class EventManager : MonoBehaviour
         if (activeLevel == levelManager.Level01)
         {
             DisplayInfoMessage(" Let's Collect cookies here!");
+            ItemPerLevelCount = 0;
             MaxItemPerLevel = 3;
         }
         else if (activeLevel == levelManager.Level02)
         {
             DisplayInfoMessage("You have collected all the cookies on that stage! Let's Collect more here!");
+           
             MaxItemPerLevel = 6;
         }
         else if (activeLevel == levelManager.Level03)
         {
             DisplayInfoMessage("You have collected all the cookies on that stage! Let's Collect more here!");
+           
             MaxItemPerLevel = 9;
         }
     }

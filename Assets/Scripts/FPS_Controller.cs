@@ -100,8 +100,6 @@ public class FPS_Controller : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
-
-
         if (controller != null)
         {
             controller.height = normalHeight;

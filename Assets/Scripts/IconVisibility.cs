@@ -18,11 +18,11 @@ public class IconVisibility : MonoBehaviour
     [SerializeField] public GameObject nomIcon;
     [SerializeField] public GameObject idleIcon;
 
-    [SerializeField] public float visibleTime=3f;
-    // Call this function to trigger the 3-second visibility
+    [SerializeField] public float visibleTime=4f;
+  
     public void FlashVisible()
     {
-        StartCoroutine(VisibilityRoutine());
+        StartCoroutine(VisibilityRoutine());// makes nom icon visible for 4 seconds then  switches back to  idle 
     }
 
     private IEnumerator VisibilityRoutine()
