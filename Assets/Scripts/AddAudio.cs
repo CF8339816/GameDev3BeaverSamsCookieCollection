@@ -27,9 +27,8 @@ public class AddAudio: MonoBehaviour
     private AudioSource source;// defines audio source
     private static AudioSource currentlyPlayingSource; //defines any currently playing for audio checks
     [SerializeField] private float startingVolume = .35f;
-
-
-    [Header("UI Elements")]
+   
+   [Header("UI Elements")]
     [SerializeField] public Slider volumeSlider ; // defines  the slider ui element being used
 
     private void Awake()
