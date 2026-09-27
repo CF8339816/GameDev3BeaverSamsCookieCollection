@@ -51,7 +51,7 @@ public class LevelManager : MonoBehaviour
         Level01.SetActive(false);
         Level02.SetActive(false);
         Level03.SetActive(false);
-       Boss.SetActive(false);
+        Boss.SetActive(false);
         Tutorial.SetActive(false);
         Menu.SetActive(false);
         HUD.SetActive(false);
