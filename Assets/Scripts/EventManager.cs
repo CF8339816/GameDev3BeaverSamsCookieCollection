@@ -142,6 +142,7 @@ public class EventManager : MonoBehaviour
     public void OnLevelChange(GameObject targetLevel)//manual  level change   and  reset
     {
         activeLevel = targetLevel;
+        TurnOnPlayer();
         StartCoroutine(ResetAndStartTimer());
         setItemsPerLevel(); // sets  max ipl
        SetItemsValue();  // resets level collection counter
@@ -157,9 +158,18 @@ public class EventManager : MonoBehaviour
         Countdown = LevelTimer;
         StopTimerCoroutine();
         countdownCoroutine = StartCoroutine(ResetAndStartTimer());
-        //if(activeLevel == levelManager.Boss)        {       addAudio.OnBoss();    }
-        //if(activeLevel == levelManager.Menu)        {       addAudio.OnMenu();    }
-        //if (activeLevel == levelManager.Tutorial)   {      addAudio.OnMenu();     }
+        if (activeLevel == levelManager.Boss)
+        { 
+            addAudio.OnBoss();
+        }
+        if (activeLevel == levelManager.Menu) 
+        {
+            addAudio.OnMenu(); 
+        }
+        if (activeLevel == levelManager.Tutorial) 
+        { 
+            addAudio.OnMenu();
+        }
     }
     public void collectedItems()
     {

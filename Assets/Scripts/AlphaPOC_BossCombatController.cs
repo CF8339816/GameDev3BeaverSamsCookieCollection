@@ -1,4 +1,4 @@
-using System;
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,20 +22,35 @@ public class AlphaPOC_BossCombatController : MonoBehaviour
     public TextMeshProUGUI combatInfoBox;
     [SerializeField] public GameObject BossImage;
     [SerializeField] public int MaxPatience;
-    public int DodgeSpot;
+    public int DodgeSpot=2;
    private LevelManager levelManager;
     private GameExitManager gameExitManager;
     private AddAudio addAudio;
     private EventManager eventManager;
     private bool iscombat = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private void Awake()
     {
+      
+        levelManager = Object.FindFirstObjectByType<LevelManager>(); // initalizes
+        gameExitManager = Object.FindFirstObjectByType<GameExitManager>(); // initalizes
+        addAudio = Object.FindFirstObjectByType<AddAudio>(); // initalizes
+        eventManager = Object.FindFirstObjectByType<EventManager>(); // initalizes
+    }
+
+
+
+
+
+
+    private void OnEnable()
+    {
+        // Reset states cleanly right when the Boss object is enabled by your LevelManager
         MaxPatience = 6;
-        
-
-
+        DodgeSpot = 0;
+        iscombat = false;
+        updatePatience();
     }
 
     // Update is called once per frame
@@ -47,8 +62,7 @@ public class AlphaPOC_BossCombatController : MonoBehaviour
             StartCoroutine(SimulateTurnBasedCombat());
 
         }
-
-             
+           
     }
 
     IEnumerator SimulateTurnBasedCombat()
@@ -81,9 +95,7 @@ public class AlphaPOC_BossCombatController : MonoBehaviour
 
         }
 
-
-
-            updatePatience();
+         updatePatience();
     }
 
     public void DodgeChoice()
@@ -94,12 +106,7 @@ public class AlphaPOC_BossCombatController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2)) { DodgeSpot = 2; }
         if (Input.GetKeyDown(KeyCode.Alpha3)) { DodgeSpot = 3; }
 
-
-
-
-
-
-    }
+     }
     public void updatePatience()
     {
 
@@ -114,15 +121,7 @@ public class AlphaPOC_BossCombatController : MonoBehaviour
         }
         else { }
 
-
-
-
-
-
     }
-
-
-
 
 
 }
