@@ -115,7 +115,7 @@ public class AlphaPOC_BossCombatController : MonoBehaviour
     public void updatePatience()
     {
         MaxPatience--;
-        if (MaxPatience <= 0)
+        if (MaxPatience < 1)
         {
             DisplayBossFightMessage("The Dangle Dragon has gotten frustraited with all your Beaverie jumping around \n it has run away with whatever cookies it could grabbie grab...");
             BossImage.SetActive(false);

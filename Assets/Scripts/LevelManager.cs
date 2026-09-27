@@ -55,6 +55,7 @@ public class LevelManager : MonoBehaviour
     public void levelChange(GameObject levelToLoad) // processes level change 
     {
         CloseAllScreens();
+        eventManager.TurnOnPlayer();
         if (levelToLoad != null)
         {
             levelToLoad.SetActive(true);
