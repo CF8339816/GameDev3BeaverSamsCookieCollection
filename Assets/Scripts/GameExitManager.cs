@@ -23,9 +23,7 @@ public class GameExitManager : MonoBehaviour
     private bool isExiting = false;
     private EventManager eventManager;
     private AlphaPOC_BossCombatController alphaPOC_BossCombatController;
-    //[SerializeField] public Button menu;
-    //[SerializeField] public Button restart;
-    //[SerializeField] public Button quit;
+
 
     private AddAudio addAudio;
 
@@ -53,9 +51,9 @@ public class GameExitManager : MonoBehaviour
 
     public void ButtonVisisbility()
     {
-        alphaPOC_BossCombatController.Quit.SetActive(false);
-        alphaPOC_BossCombatController.Restart.SetActive(false);
-        alphaPOC_BossCombatController.Menu.SetActive(false);
+        alphaPOC_BossCombatController.Quit.SetActive(true);
+        alphaPOC_BossCombatController.Restart.SetActive(true);
+        alphaPOC_BossCombatController.Menu.SetActive(true);
     }
 
 
