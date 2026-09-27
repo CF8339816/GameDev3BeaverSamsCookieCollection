@@ -110,8 +110,10 @@ public class LevelManager : MonoBehaviour
     public void onStart() // processes level change 
     {       
         currentActiveLevel.SetActive(false);
-        Level01.SetActive(true);
+        Level02.SetActive(true);
         HUD.SetActive(true);
+        currentActiveLevel = Level01;
+        Cursor.visible = false;
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);
@@ -123,6 +125,8 @@ public class LevelManager : MonoBehaviour
         Menu.SetActive(true);
         HUD.SetActive(false);
         currentActiveLevel = Menu;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);
@@ -132,7 +136,9 @@ public class LevelManager : MonoBehaviour
     {
         currentActiveLevel.SetActive(false);
         Level01.SetActive(true);
-        HUD.SetActive(true);  
+        HUD.SetActive(true);
+        currentActiveLevel = Level01;
+        Cursor.visible = false;
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);
@@ -143,7 +149,8 @@ public class LevelManager : MonoBehaviour
         currentActiveLevel.SetActive(false);
         Level02.SetActive(true);
         HUD.SetActive(true); 
-        currentActiveLevel = Level02; 
+        currentActiveLevel = Level02;
+        Cursor.visible = false;
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);
@@ -154,7 +161,8 @@ public class LevelManager : MonoBehaviour
         currentActiveLevel.SetActive(false);
         Level03.SetActive(true);
         HUD.SetActive(true);
-        currentActiveLevel = Level03;   
+        currentActiveLevel = Level03;
+        Cursor.visible = false;
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);
@@ -165,7 +173,9 @@ public class LevelManager : MonoBehaviour
         currentActiveLevel.SetActive(false);
         Tutorial.SetActive(true);
         HUD.SetActive(false);
-        currentActiveLevel = Tutorial;     
+        currentActiveLevel = Tutorial;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);
@@ -176,7 +186,9 @@ public class LevelManager : MonoBehaviour
         currentActiveLevel.SetActive(false);
         Boss.SetActive(true);
         HUD.SetActive(false);
-        currentActiveLevel = Boss;     
+        currentActiveLevel = Boss;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);

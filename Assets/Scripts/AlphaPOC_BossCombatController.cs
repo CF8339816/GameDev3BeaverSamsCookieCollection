@@ -55,16 +55,20 @@ public class AlphaPOC_BossCombatController : MonoBehaviour
         MaxPatience = 4;
         DodgeSpot = 2;
         iscombat = false;
-        updatePatience();
+     }
+
+    private void Start()
+    {      
+        BossImage.SetActive(true);
         Quit.SetActive(false);
         Restart.SetActive(false);
         Menu.SetActive(false);
-        BossImage.SetActive(true);
     }
-       // Update is called once per frame
+    // Update is called once per frame
     void Update()
     {
         bossFight();
+    
         textPatience.text = "Dangle's Patience " + MaxPatience.ToString();
     }
     public void bossFight()

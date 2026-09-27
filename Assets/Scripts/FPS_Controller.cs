@@ -1,6 +1,4 @@
-using UnityEditor.PackageManager;
 using UnityEngine;
-using UnityEngine.ProBuilder.MeshOperations;
 
 public class FPS_Controller : MonoBehaviour
 {
