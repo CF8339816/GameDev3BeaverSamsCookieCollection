@@ -118,7 +118,19 @@ public class AddAudio: MonoBehaviour
             source.PlayOneShot(MenuAudio, 1.0f);//plays defined audio clip on ente of collider zone
         }
     }
+    public void OnLoss()
+    {
+        if (volumeSlider != null && source != null)// presets volume per new govenrences above
+        {
+            source.volume = volumeSlider.value;
+        }
 
+        if (source != null && source.clip != null)
+        {
+            source.PlayOneShot(GameLossAudio, 1.0f);//plays defined audio clip on ente of collider zone
+
+        }
+    }
     public void OnStage()
     {
         if (volumeSlider != null && source != null)// presets volume per new govenrences above

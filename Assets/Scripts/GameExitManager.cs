@@ -24,6 +24,9 @@ public class GameExitManager : MonoBehaviour
     [SerializeField] public Button menu;
     [SerializeField] public Button restart;
     [SerializeField] public Button quit;
+
+    private AddAudio addAudio;
+
     void Awake()
     {
         Countdown = ExitDelay;
@@ -49,7 +52,7 @@ public class GameExitManager : MonoBehaviour
         else
         {
             eventManager.DisplayInfoMessage("Try as you might you could not defeat the Dangle Dragon,\n too many of your cookies were 'grabbie grabbed' \n you just don't have the calories available to survive the winter, you almost make it but freeze to death in early spring...  \n you are mourned by the other beavers who thought you were a little wierd anyway");
-
+            addAudio.OnLoss();
         }
 
         ButtonVisisbility();

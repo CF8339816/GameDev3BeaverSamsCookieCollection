@@ -230,11 +230,11 @@ public class EventManager : MonoBehaviour
     {
         if (ItemPerLevelCount == MaxItemPerLevel)
         {
-            //DisplayInfoMessage("you have collected all the items on that stage! Let's Collect more here!");
+            
             levelManager.LoadNextChronologicalLevel();
 
             activeLevel = levelManager.currentActiveLevel;
-           // ItemPerLevelCount = 0;
+          
 
             setItemsPerLevel(); // sets  max ipl
 
