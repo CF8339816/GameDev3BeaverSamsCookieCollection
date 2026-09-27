@@ -110,7 +110,7 @@ public class EventManager : MonoBehaviour
         }
         if (iconVisibility != null)
         {
-            iconVisibility.FlashVisible();
+            iconVisibility.nomVisible();
         }
     }
    public void checkTimer()

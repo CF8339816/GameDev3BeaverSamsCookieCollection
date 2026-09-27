@@ -20,7 +20,7 @@ public class IconVisibility : MonoBehaviour
 
     [SerializeField] public float visibleTime=4f;
   
-    public void FlashVisible()
+    public void nomVisible()
     {
         StartCoroutine(VisibilityRoutine());// makes nom icon visible for 4 seconds then  switches back to  idle 
     }

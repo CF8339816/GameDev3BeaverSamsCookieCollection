@@ -123,7 +123,10 @@ public class AlphaPOC_BossCombatController : MonoBehaviour
         {
             DisplayBossFightMessage("The Dangle Dragon has gotten frustraited with all your Beaverie jumping around \n it has run away with whatever cookies it could grabbie grab...");
             BossImage.SetActive(false);
-            gameExitManager.Wincheck();
+            Quit.SetActive(true);
+            Restart.SetActive(true);
+            Menu.SetActive(true);
+            
         }
         else { }
     }
