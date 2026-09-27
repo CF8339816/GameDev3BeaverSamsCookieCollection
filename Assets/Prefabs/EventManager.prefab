@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &87148842869038513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5099025661734499788}
+  - component: {fileID: 8735335079245322362}
+  - component: {fileID: 6193905609466680434}
+  - component: {fileID: 6933991422554281667}
+  - component: {fileID: 8979901732306236137}
+  - component: {fileID: 8893815774679891443}
+  m_Layer: 0
+  m_Name: EventManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5099025661734499788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87148842869038513}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3625.9023, y: 0.00001, z: 753.7262}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8735335079245322362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87148842869038513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa8a078f0e42b0f4aafef271d9e2ebe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EventManager
+  CookieCountPerLevel: {fileID: 0}
+  InfoBox: {fileID: 0}
+  CalorieCounter: {fileID: 0}
+  levelCountdownText: {fileID: 0}
+  textItemsCount: {fileID: 0}
+  textInfoBox: {fileID: 0}
+  player: {fileID: 0}
+  MaxCalories: 40
+  MaxCookies: 45
+  LevelTimer: 30
+  Countdown: 0
+  MenuCam: {fileID: 0}
+  levelManager: {fileID: 0}
+  MaxItemPerLevel: 0
+  newTimeAllocation: 0
+  ItemsCount: 0
+--- !u!114 &6193905609466680434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87148842869038513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18c0bfa5d1069c4799d5c7e08432fb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IconVisibility
+  nomIcon: {fileID: 0}
+  idleIcon: {fileID: 0}
+  visibleTime: 3
+--- !u!114 &6933991422554281667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87148842869038513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a8c29fca2c3214494c8dcaff99dc86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AddAudio
+  cookieNomAudio: {fileID: 8300000, guid: 99d61c43a3f2fee43951fe9f1cce6b75, type: 3}
+  BossFightAudio: {fileID: 8300000, guid: 5e4133a4e98da594b84307ac67052d9d, type: 3}
+  MenuAudio: {fileID: 8300000, guid: 1487f4b4d900a62478296b4345c0e86b, type: 3}
+  GameLossAudio: {fileID: 8300000, guid: 2c768eefae311734db5070e12fb92f2d, type: 3}
+  StageAudio: {fileID: 8300000, guid: 35cec2b836bb5e247bf54cac84bbbb2a, type: 3}
+  MiscAudio: {fileID: 8300000, guid: 6e1f6c624dec58b4e8f6d3cdea4b5b0f, type: 3}
+  startingVolume: 0.35
+  volumeSlider: {fileID: 0}
+--- !u!114 &8979901732306236137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87148842869038513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d498516a6ea60b4c8047a94d7582f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlphaPOC_BossCombatController
+  Patience: {fileID: 0}
+  combatInfoBox: {fileID: 0}
+  BossImage: {fileID: 0}
+  MaxPatience: 0
+  DodgeSpot: 0
+--- !u!114 &8893815774679891443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87148842869038513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc50de353d598d4a802bf708d18cf29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameExitManager
+  ExitDelay: 5
+  exitCountdownText: {fileID: 0}
+  menu: {fileID: 0}
+  restart: {fileID: 0}
+  quit: {fileID: 0}

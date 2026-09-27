@@ -53,14 +53,7 @@ public class AddAudio: MonoBehaviour
         OnMenu();
     }
 
-    private void Update()
-    {
-     
-
-
-
-
-    }
+   
     public void StartupAudio()
     {
         source.volume = startingVolume; // Safely sets 0.35f fallback

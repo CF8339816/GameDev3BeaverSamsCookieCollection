@@ -1,7 +1,7 @@
 using System.Collections;
 using Unity.VectorGraphics;
 using UnityEngine;
-using UnityEngine;
+
 using UnityEngine.SceneManagement;
 
 #region coder & project
@@ -18,7 +18,6 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
-    public GameObject MenuCam;
     public GameObject Level01;
     public GameObject Level02;
     public GameObject Level03;
@@ -26,28 +25,23 @@ public class LevelManager : MonoBehaviour
     public GameObject Tutorial;
     public GameObject Menu;
     public GameObject currentActiveLevel;
-    private LevelGeneration levelGeneration;
     public GameObject levelToLoad;
     private EventManager eventManager;  //added to ensure level manager can find the event manager to tell it when to initalize stages
     private AddAudio addAudio;
     public GameObject HUD;
-    public GameObject Player;
     public void Awake()//added to ensure level manager runs prior to event manager
     {
         currentActiveLevel = Menu;
-        MenuCam.SetActive(true);
         eventManager = Object.FindFirstObjectByType<EventManager>();// find the event manager
+        addAudio = Object.FindFirstObjectByType<AddAudio>();// find the audio  adder
     }
     public void Start()
     {
         CloseAllScreens();// ensures no other active scenes at start 
-        MenuCam.SetActive(true);
         Menu.SetActive(true);// sets default starting stage
     }
     public void CloseAllScreens() //closes all levels
     {
-        MenuCam.SetActive(false);
-        Player.SetActive(false);
         Level01.SetActive(false);
         Level02.SetActive(false);
         Level03.SetActive(false);
@@ -59,13 +53,36 @@ public class LevelManager : MonoBehaviour
     public void levelChange(GameObject levelToLoad) // processes level change 
     {
         CloseAllScreens();
-        currentActiveLevel.SetActive(false);
-        levelToLoad.SetActive(true);
-        currentActiveLevel = levelToLoad;
+        if (levelToLoad != null)
+        {
+            levelToLoad.SetActive(true);
+            currentActiveLevel = levelToLoad; // updates level tracker
+        }
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);
         }
+
+        if (levelToLoad == Level01 || levelToLoad == Level02 || levelToLoad == Level03 || levelToLoad == Boss)
+        {
+            HUD.SetActive(true);
+        }
+        else
+        {
+            HUD.SetActive(false); // Hide HUD for Menu/Tutorial
+        }
+
+
+        if (addAudio != null)// sets the audio per level 
+        {
+            if (levelToLoad == Menu || levelToLoad == Tutorial) addAudio.OnMenu();
+            else if (levelToLoad == Boss) addAudio.OnBoss();
+            else addAudio.OnStage();
+        }
+
+
+
+
     }
     public void LoadNextChronologicalLevel()  //  loads stages in next chronological order
     {
@@ -82,103 +99,87 @@ public class LevelManager : MonoBehaviour
             levelChange(Boss);
         }
     }
-    public void onStart(GameObject Level01) // processes level change 
+    public void onStart() // processes level change 
     {
-        CloseAllScreens();
-        Player.SetActive(true);
-        MenuCam.SetActive(false);
+       // CloseAllScreens();
         currentActiveLevel.SetActive(false);
         Level01.SetActive(true);
-        currentActiveLevel = Level01;
-        addAudio.OnStage();
+
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);
         }
     }
-    public void onMenu(GameObject Menu) // processes level change 
+    public void onMenu() // processes level change 
     {
-        CloseAllScreens();
+        //CloseAllScreens();
         currentActiveLevel.SetActive(false);
         Menu.SetActive(true);
-        MenuCam.SetActive(true);
         currentActiveLevel = Menu;
-        addAudio.OnMenu();
-        Player.SetActive(false);
+
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);
         }
     }
-    public void onLevel01(GameObject Level01) // processes level change 
+    public void onLevel01() // processes level change 
     {
-        CloseAllScreens();
+       // CloseAllScreens();
         currentActiveLevel.SetActive(false);
         Level01.SetActive(true);
         HUD.SetActive(true);
-        currentActiveLevel = Level01;
-        addAudio.OnStage();
-        Player.SetActive(true);
-        MenuCam.SetActive(false);
+  
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);
         }
     }
-    public void onLevel02(GameObject Level02) // processes level change 
+    public void onLevel02() // processes level change 
     {
-        CloseAllScreens();
+       // CloseAllScreens();
         currentActiveLevel.SetActive(false);
         Level02.SetActive(true);
         HUD.SetActive(true); 
         currentActiveLevel = Level02;
-        addAudio.OnStage();
-        Player.SetActive(true);
-        MenuCam.SetActive(false);
+ 
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);
         }
     }
-    public void onLevel03(GameObject Level03) // processes level change 
+    public void onLevel03() // processes level change 
     {
-        CloseAllScreens();
+      //  CloseAllScreens();
         currentActiveLevel.SetActive(false);
         Level03.SetActive(true);
         HUD.SetActive(true);
         currentActiveLevel = Level03;
-        addAudio.OnStage();
-        Player.SetActive(true);
-        MenuCam.SetActive(false);
+   
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);
         }
     }
-    public void onTutorial(GameObject Tutorial) // processes level change 
+    public void onTutorial() // processes level change 
     {
-        CloseAllScreens();
+       // CloseAllScreens();
         currentActiveLevel.SetActive(false);
         Tutorial.SetActive(true);
         currentActiveLevel = Tutorial;
-        addAudio.OnMenu();
-        Player.SetActive(false);
-        MenuCam.SetActive(true);
+     
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);
         }
     }
-    public void onBoss(GameObject Boss) // processes level change 
+    public void onBoss() // processes level change 
     {
-        CloseAllScreens();
+       // CloseAllScreens();
         currentActiveLevel.SetActive(false);
         Boss.SetActive(true);
         HUD.SetActive(true);
         currentActiveLevel = Boss;
-        addAudio.OnBoss();
-        Player.SetActive(false);
-        MenuCam.SetActive(true);
+     
         if (eventManager != null)// tells event manager to load new level 
         {
             eventManager.OnLevelChange(currentActiveLevel);
