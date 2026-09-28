@@ -9,8 +9,8 @@ using UnityEngine.SceneManagement;
 /// team: Chris French, Roman Zhurakhov, Myranda Roy
 /// Coder current script: Chris French Second Year NSCC Game Programming 
 /// Additions / annotations:
-/// code review Roman Zhurakhov - converted level switching to scene loading,
-/// and cookie targets are now defined per level (9 / 15 / 21).
+/// code review Roman Zhurakhov - scene-based level switching; EventManager
+/// re-finds its scene-scoped references automatically after every load.
 /// </summary>
 #endregion
 
@@ -37,9 +37,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private string _tutorialSceneName = "Tutorial";
     [SerializeField] private string _menuSceneName = "Menu";
 
-    [SerializeField] private EventManager eventManager; //added to ensure level manager can find the event manager to tell it when to initalize stages
-
-    public GameObject HUD;
+    [SerializeField] private EventManager eventManager;
 
     private int _currentLevelIndex = -1;
     private string _currentSceneName;
@@ -55,11 +53,10 @@ public class LevelManager : MonoBehaviour
 
     public void Start()
     {
-        HUD.SetActive(false);
         LoadMenu();
     }
 
-    private IEnumerator LoadSceneRoutine(string sceneName, bool showHUD, int cookieTarget)
+    private IEnumerator LoadSceneRoutine(string sceneName, int cookieTarget)
     {
         if (!string.IsNullOrEmpty(_currentSceneName))
         {
@@ -69,9 +66,7 @@ public class LevelManager : MonoBehaviour
         yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         _currentSceneName = sceneName;
 
-        HUD.SetActive(showHUD);
-
-        // Generate cookies for this level, capped at cookieTarget.
+        // Only numbered levels have procedural generation.
         LevelGeneration levelGeneration = FindFirstObjectByType<LevelGeneration>();
         if (levelGeneration != null)
         {
@@ -80,6 +75,8 @@ public class LevelManager : MonoBehaviour
 
         if (eventManager != null)
         {
+            // This re-finds BossController/Boss_PlayerController/AddAudio/IconVisibility
+            // for whatever scene was just loaded, and resets the cookie goal + timer.
             eventManager.OnLevelChange(cookieTarget);
         }
     }
@@ -94,7 +91,6 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            // Ran out of numbered levels - go to the boss stage.
             LoadBoss();
         }
     }
@@ -109,28 +105,27 @@ public class LevelManager : MonoBehaviour
 
         _currentLevelIndex = index;
         LevelDefinition level = _levels[index];
-        StartCoroutine(LoadSceneRoutine(level.SceneName, showHUD: true, level.CookieTarget));
+        StartCoroutine(LoadSceneRoutine(level.SceneName, level.CookieTarget));
     }
 
     public void LoadMenu()
     {
         _currentLevelIndex = -1;
-        StartCoroutine(LoadSceneRoutine(_menuSceneName, showHUD: false, cookieTarget: 0));
+        StartCoroutine(LoadSceneRoutine(_menuSceneName, cookieTarget: 0));
     }
 
     public void LoadTutorial()
     {
         _currentLevelIndex = -1;
-        StartCoroutine(LoadSceneRoutine(_tutorialSceneName, showHUD: false, cookieTarget: 0));
+        StartCoroutine(LoadSceneRoutine(_tutorialSceneName, cookieTarget: 0));
     }
 
     public void LoadBoss()
     {
-        _currentLevelIndex = _levels.Length; // past the last numbered level
-        StartCoroutine(LoadSceneRoutine(_bossSceneName, showHUD: true, cookieTarget: 0));
+        _currentLevelIndex = _levels.Length;
+        StartCoroutine(LoadSceneRoutine(_bossSceneName, cookieTarget: 0));
     }
 
-    // Convenience wrappers matching old UI Button hookups (Level01/02/03 buttons, etc.)
     public void onLevel01() => LoadLevelByIndex(0);
     public void onLevel02() => LoadLevelByIndex(1);
     public void onLevel03() => LoadLevelByIndex(2);

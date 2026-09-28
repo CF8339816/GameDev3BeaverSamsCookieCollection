@@ -1023,7 +1023,6 @@ GameObject:
   - component: {fileID: 7961606599287238508}
   - component: {fileID: 8968919019190534525}
   - component: {fileID: 1880711187278183548}
-  - component: {fileID: 9085852622117423940}
   m_Layer: 5
   m_Name: StageTimer
   m_TagString: Untagged
@@ -1150,32 +1149,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &9085852622117423940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5428552524693085290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa8a078f0e42b0f4aafef271d9e2ebe8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StageTimer
-  levelCountdownText: {fileID: 1880711187278183548}
-  textItemsCount: {fileID: 8813344847368610404}
-  textInfoBox: {fileID: 1137277714509925755}
-  LevelTimer: 30
-  Countdown: 0
-  levelManager: {fileID: 0}
-  gameExitManager: {fileID: 0}
-  playerInteraction: {fileID: 0}
-  addAudio: {fileID: 0}
-  iconVisibility: {fileID: 0}
-  bossController: {fileID: 0}
-  boss_playerController: {fileID: 0}
-  MaxItemPerLevel: 0
-  ItemsCount: 0
 --- !u!1 &5599357316027738658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,7 +1458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1052687079664927721
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1546,12 +1519,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1721,8 +1694,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1574377703057373496}
   - component: {fileID: 8794817113261769319}
-  - component: {fileID: 1439441029324295875}
-  - component: {fileID: 5359015082234402116}
   m_Layer: 5
   m_Name: CalorieSlider
   m_TagString: Untagged
@@ -1804,47 +1775,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1439441029324295875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8227994454623911688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa8a078f0e42b0f4aafef271d9e2ebe8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EventManager
-  levelCountdownText: {fileID: 1880711187278183548}
-  textItemsCount: {fileID: 8813344847368610404}
-  textInfoBox: {fileID: 1137277714509925755}
-  LevelTimer: 30
-  Countdown: 0
-  levelManager: {fileID: 56358609022989947, guid: dd1b619ae4d7d174bb4e5e6ee804dde4, type: 3}
-  gameExitManager: {fileID: 0}
-  playerInteraction: {fileID: 0}
-  addAudio: {fileID: 0}
-  iconVisibility: {fileID: 0}
-  bossController: {fileID: 0}
-  boss_playerController: {fileID: 0}
-  MaxItemPerLevel: 0
-  ItemsCount: 0
---- !u!114 &5359015082234402116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8227994454623911688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f18c0bfa5d1069c4799d5c7e08432fb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::IconVisibility
-  nomIcon: {fileID: 6063640727871772664}
-  idleIcon: {fileID: 5599357316027738658}
-  visibleTime: 3
 --- !u!1 &8263266708000417901
 GameObject:
   m_ObjectHideFlags: 0

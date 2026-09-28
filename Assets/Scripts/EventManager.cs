@@ -9,8 +9,9 @@ using System.Collections;
 /// team: Chris French, Roman Zhurakhov, Myranda Roy
 /// Coder current script: Chris French Second Year NSCC Game Programming 
 /// Additions / annotations:
-/// code review Roman Zhurakhov - removed dead fields/methods left over from the
-/// GameObject-based level system (now scene-based, cookie target comes from LevelManager).
+/// code review Roman Zhurakhov - scene-dependent references (boss scripts, audio,
+/// icon visibility) are now auto-found at runtime via RefreshSceneReferences(),
+/// called by LevelManager whenever a scene is loaded. Removed unused playerInteraction field.
 /// </summary>
 #endregion
 
@@ -24,12 +25,14 @@ public class EventManager : MonoBehaviour
     public float Countdown;
 
     [SerializeField] public LevelManager levelManager;
-    [SerializeField] private GameExitManager gameExitManager;
-    [SerializeField] private PlayerInteraction playerInteraction;
-    [SerializeField] private AddAudio addAudio;
-    [SerializeField] private IconVisibility iconVisibility;
-    [SerializeField] private BossController bossController;
-    [SerializeField] private Boss_PlayerController boss_playerController;
+    [SerializeField] private GameResultManager gameResultManager;
+
+    // These live in whichever scene is currently loaded (hud, level, or boss stage),
+    // so they can't be wired up in the Inspector ahead of time - they're found at runtime.
+    private AddAudio addAudio;
+    private IconVisibility iconVisibility;
+    private BossController bossController;
+    private Boss_PlayerController boss_playerController;
 
     public int MaxItemPerLevel;
     private int ItemPerLevelCount = 0;
@@ -104,6 +107,26 @@ public class EventManager : MonoBehaviour
         CheckBossGrab();
     }
 
+    /// <summary>
+    /// Called by LevelManager right after any scene finishes loading.
+    /// Re-finds scene-scoped components so EventManager always has fresh, valid references
+    /// no matter which scene is currently active (hud persists, everything else swaps in/out).
+    /// </summary>
+    public void RefreshSceneReferences()
+    {
+        if (addAudio == null)
+            addAudio = FindFirstObjectByType<AddAudio>();
+
+        if (iconVisibility == null)
+            iconVisibility = FindFirstObjectByType<IconVisibility>();
+
+        if (gameResultManager == null)
+            gameResultManager = FindFirstObjectByType<GameResultManager>();
+
+        bossController = FindFirstObjectByType<BossController>();
+        boss_playerController = FindFirstObjectByType<Boss_PlayerController>();
+    }
+
     public void DisplayInfoMessage(string message)// formats info box messages to use display clear timer instead of being on screen dynamically
     {
         textInfoBox.text = message; //defines new message variable
@@ -119,8 +142,12 @@ public class EventManager : MonoBehaviour
     {
         ItemsCount++;//adds 1 to max game count when picked up
         ItemPerLevelCount++;//adds 1 to level count when picked up
-        addAudio.OnNom();
-        iconVisibility.FlashVisible();
+
+        if (addAudio != null)
+            addAudio.OnNom();
+
+        if (iconVisibility != null)
+            iconVisibility.FlashVisible();
     }
 
     public void checkTimer()
@@ -159,6 +186,8 @@ public class EventManager : MonoBehaviour
         MaxItemPerLevel = cookieTargetForLevel;
         ItemPerLevelCount = 0;
 
+        RefreshSceneReferences(); // re-find scene-scoped components for the newly loaded scene
+
         SetItemsValue();  // resets level collection counter display
 
         if (cookieTargetForLevel > 0)
@@ -179,6 +208,9 @@ public class EventManager : MonoBehaviour
 
     public void CheckBossGrab()
     {
+        if (bossController == null || boss_playerController == null)
+            return;
+
         if (bossController.IsAttacking == true)
         {
             if ((LeftHandTarget == PlayerJumpTarget) || (RightHandTarget == PlayerJumpTarget))
@@ -195,7 +227,8 @@ public class EventManager : MonoBehaviour
         if (bossController.IsAttacking == false)
         {
             DisplayInfoMessage("The Dangle Dragon has gotten frustraited with all your Beaverie jumping around \n it has run away with whatever cookies it could grabbie grab...");
-            gameExitManager.Wincheck();
+            if (gameResultManager != null)
+                gameResultManager.CheckWin();
         }
     }
 
