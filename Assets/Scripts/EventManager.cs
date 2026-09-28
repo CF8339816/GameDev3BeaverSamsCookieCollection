@@ -183,10 +183,10 @@ public class EventManager : MonoBehaviour
         Debug.Log($"Collected: {currentItems}/{MaxCalories}"); //verifies  the item slider addition whenitems are picked up
         if (activeLevel == levelManager.Level01 || activeLevel == levelManager.Level02 || activeLevel == levelManager.Level03)
         {
-            if (currentItems >= MaxCookies)
-            {
-                DisplayInfoMessage("you have collected all the items Needed  in the game  congrats you win");
-            }
+            //if (currentItems >= MaxCookies)
+            //{
+            //    DisplayInfoMessage("you have collected all the items Needed  in the game  congrats you win");
+            //}
             if (currentItems >= MaxCalories)
             {
                 DisplayInfoMessage("You have collected enough cookies for winter, there are still some more extras are good!");
@@ -217,13 +217,13 @@ public class EventManager : MonoBehaviour
         }
         else if (activeLevel == levelManager.Level02)
         {
-            DisplayInfoMessage("You have collected all the cookies on that stage! Let's Collect more here!");
+            DisplayInfoMessage("You have collected all the cookies you can on that stage! Let's Collect more here!");
            
             MaxItemPerLevel = 6;
         }
         else if (activeLevel == levelManager.Level03)
         {
-            DisplayInfoMessage("You have collected all the cookies on that stage! Let's Collect more here!");
+            DisplayInfoMessage("You have collected all the cookies you can on that stage! Let's Collect more here!");
            
             MaxItemPerLevel = 9;
         }

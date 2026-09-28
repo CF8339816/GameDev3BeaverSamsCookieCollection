@@ -90,8 +90,9 @@ public class AlphaPOC_BossCombatController : MonoBehaviour
     {
         iscombat = true;
         DodgeChoice();
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(3.0f);
         CheckBossFight();
+        yield return new WaitForSeconds(3.0f);
         iscombat = false;
     }
     public void CheckBossFight()
@@ -104,7 +105,7 @@ public class AlphaPOC_BossCombatController : MonoBehaviour
         }
         else
         {
-            DisplayBossFightMessage("YAY you Doged the grabbiegrab... you're better than DBZ Abridged Gohan, whoever that is...");
+            DisplayBossFightMessage("YAY you Dodged the grabbie grab... you're better than DBZ Abridged Gohan, whoever that is...");
         }
          updatePatience();
     }
