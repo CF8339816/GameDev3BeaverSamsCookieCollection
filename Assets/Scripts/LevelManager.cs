@@ -72,7 +72,7 @@ public class LevelManager : MonoBehaviour
         else
         {
             Cursor.visible = true; //  makes  cursor visible on stages without player controller           
-            Cursor.lockState = CursorLockMode.None;// unlocks  cursor for stags with no player  controller
+           // Cursor.lockState = CursorLockMode.None;// unlocks  cursor for stags with no player  controller
 
             HUD.SetActive(false); // Hide HUD for Menu/Tutorial/ boss
         }
