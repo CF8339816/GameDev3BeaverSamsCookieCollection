@@ -3,6 +3,7 @@ using Unity.VectorGraphics;
 using UnityEngine;
 
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 #region coder & project
 /// <summary>
@@ -30,8 +31,11 @@ public class LevelManager : MonoBehaviour
     private AddAudio addAudio;
     private AlphaPOC_BossCombatController alphaPOC_BossCombatController;
     public GameObject HUD;
+    //public GameObject BSCursor;
+
     public void Awake()//added to ensure level manager runs prior to event manager
     {
+       // Cursor.SetCursor( BEAVERSAM-cursor );
         currentActiveLevel = Menu;
         eventManager = Object.FindFirstObjectByType<EventManager>();// find the event manager
         addAudio = Object.FindFirstObjectByType<AddAudio>();// find the audio  adder

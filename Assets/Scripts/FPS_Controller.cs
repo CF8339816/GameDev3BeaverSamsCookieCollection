@@ -90,12 +90,15 @@ public class FPS_Controller : MonoBehaviour
 
         if (eventManager.activeLevel == levelManager.Level01 || eventManager.activeLevel == levelManager.Level02 || eventManager.activeLevel == levelManager.Level03)
         {
-            Cursor.visible = false;
+                     
+            Cursor.visible = true;
+
+
         }
         else
         {
             Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            Cursor.lockState = CursorLockMode.Confined;
         }
 
         if (controller != null)
