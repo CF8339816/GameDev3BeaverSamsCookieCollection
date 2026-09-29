@@ -126,10 +126,11 @@ GameObject:
   - component: {fileID: 7181227463387256094}
   - component: {fileID: 8801456327202680920}
   - component: {fileID: 3043407508008132991}
+  - component: {fileID: 937574731829000118}
   - component: {fileID: 4326272117603855959}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -269,6 +270,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
   playerReach: 3
+--- !u!114 &937574731829000118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502890532451837451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16f8611c6a00fde4bb7b308db22dabac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerRespawn
 --- !u!143 &4326272117603855959
 CharacterController:
   m_ObjectHideFlags: 0

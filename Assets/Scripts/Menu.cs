@@ -20,11 +20,13 @@ public class Menu : MonoBehaviour
     {
         if (levelManager == null)
             levelManager = FindFirstObjectByType<LevelManager>();
+
+        Cursor.visible = true;
     }
 
     void Update()
     {
-        HandleDebugInputs();
+        //HandleDebugInputs();
     }
 
     private void HandleDebugInputs()

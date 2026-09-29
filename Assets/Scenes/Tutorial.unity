@@ -756,7 +756,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2399782698083800930}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
         m_MethodName: onMenu
         m_Mode: 1
@@ -858,7 +858,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2399782698083800930}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
         m_MethodName: onLevel01
         m_Mode: 1
@@ -1478,29 +1478,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &2399782698083800930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8245091409828176301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e98c75b21fa7bfd4eb785ef6c43f5b9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LevelManager
-  _levels:
-  - SceneName: Level01
-    CookieTarget: 9
-  - SceneName: Level02
-    CookieTarget: 15
-  - SceneName: Level03
-    CookieTarget: 21
-  _bossSceneName: BossStage
-  _tutorialSceneName: Tutorial
-  _menuSceneName: Menu
-  eventManager: {fileID: 0}
 --- !u!222 &2410263346752739564
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3924,9 +3901,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4403910165573402595}
   - component: {fileID: 6416261075632335909}
+  - component: {fileID: 9009508132609155353}
   - component: {fileID: 9009508132609155352}
   - component: {fileID: 4351358995286230538}
-  - component: {fileID: 2399782698083800930}
   m_Layer: 5
   m_Name: TutorialCanvas
   m_TagString: Untagged
@@ -4238,6 +4215,20 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
+--- !u!114 &9009508132609155353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8245091409828176301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c12848aeec0e5045a1c1c46ccfda736, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialButtons
+  tutorialStart: {fileID: 867677656422489916}
+  tutorialBackToMenu: {fileID: 708583173821591158}
 --- !u!114 &9024566234078356123
 MonoBehaviour:
   m_ObjectHideFlags: 0

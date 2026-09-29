@@ -41,10 +41,18 @@ public class BossController : MonoBehaviour
     [SerializeField] float _windUpPauseDuration = 0.5f;
 
     bool _isAttacking = false;
-    public bool IsAttacking => _isAttacking;  /// CF added this to give other scripts something to check against that they cannot change
+    public bool IsAttacking => _isAttacking;
 
-    public static event Action<GameObject, Vector3> OnHandMovementStarted; /// CF added this to give other scripts something to check against 
+    private bool _playerHitThisAttack = false;
+    private bool _fightEnded = false;
 
+    public static event Action<GameObject, Vector3> OnHandMovementStarted;
+
+    /// <summary>
+    /// Fired once, right after an attack finishes, reporting whether the player was actually
+    /// touched by either hand's collider during that attack.
+    /// </summary>
+    public static event Action<bool> OnAttackResolved;
 
 
     System.Random rand = new System.Random();
@@ -66,6 +74,8 @@ public class BossController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_fightEnded) return; // fight is over, stop attacking entirely
+
         if (_isAttacking)
         {
             return;
@@ -134,9 +144,15 @@ public class BossController : MonoBehaviour
         return candidates[rand.Next(0, candidates.Count)];
     }
 
+    public void RegisterHandHit()
+    {
+        _playerHitThisAttack = true;
+    }
+
     IEnumerator AttackBothRoutine(int leftIndex, int rightIndex)
     {
         _isAttacking = true;
+        _playerHitThisAttack = false; // reset for this attack
 
         Coroutine leftRoutine = null;
         Coroutine rightRoutine = null;
@@ -155,6 +171,9 @@ public class BossController : MonoBehaviour
         if (rightRoutine != null) yield return rightRoutine;
 
         _isAttacking = false;
+
+        // Attack fully finished - report the outcome exactly once.
+        OnAttackResolved?.Invoke(_playerHitThisAttack);
     }
 
     IEnumerator AttackRoutine(GameObject hand, Transform restPosition, Transform prepPos, Transform targetPos)
@@ -192,6 +211,24 @@ public class BossController : MonoBehaviour
         }
 
         hand.transform.position = targetPosition;
+    }
+
+    /// <summary>
+    /// Called by EventManager when the boss fight timer runs out.
+    /// Stops any attack in progress and snaps both hands back to their rest positions.
+    /// </summary>
+    public void EndFight()
+    {
+        _fightEnded = true;
+
+        StopAllCoroutines(); // cancels any in-progress AttackBothRoutine/AttackRoutine/MoveHand
+        _isAttacking = false;
+
+        if (_bossHandLeft != null && _leftRestPosition != null)
+            _bossHandLeft.transform.position = _leftRestPosition.position;
+
+        if (_bossHandRight != null && _rightRestPosition != null)
+            _bossHandRight.transform.position = _rightRestPosition.position;
     }
 }
 

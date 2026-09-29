@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 #region coder & project
@@ -21,14 +22,14 @@ public class EventManager : MonoBehaviour
     public TextMeshProUGUI textItemsCount;
     public TextMeshProUGUI textInfoBox;
 
+    [SerializeField] private Slider calorieSlider;
+
     [SerializeField] public float LevelTimer = 30f;
     public float Countdown;
 
     [SerializeField] public LevelManager levelManager;
     [SerializeField] private GameResultManager gameResultManager;
 
-    // These live in whichever scene is currently loaded (hud, level, or boss stage),
-    // so they can't be wired up in the Inspector ahead of time - they're found at runtime.
     private AddAudio addAudio;
     private IconVisibility iconVisibility;
     private BossController bossController;
@@ -90,21 +91,45 @@ public class EventManager : MonoBehaviour
         PlayerInteraction.OnCookieEaten += updateHUDFromCookieAction; //listens for player's cookie interaction
         BossController.OnHandMovementStarted += HandleHandMovement;  // same but for boss hands
         Boss_PlayerController.OnPlayerJumpStarted += HandlePlayerJump;// same but for player move in boss fight
+        BossController.OnAttackResolved += HandleBossAttackResolved; // reacts to hit/dodge at the end of each attack
     }
 
     private void OnDisable()
     {
-        PlayerInteraction.OnCookieEaten -= updateHUDFromCookieAction; //  stops the cookie listen
-        BossController.OnHandMovementStarted -= HandleHandMovement;   // same but for boss hands
-        Boss_PlayerController.OnPlayerJumpStarted -= HandlePlayerJump;// same but for player move in boss fight
+        PlayerInteraction.OnCookieEaten -= updateHUDFromCookieAction;
+        BossController.OnHandMovementStarted -= HandleHandMovement;
+        Boss_PlayerController.OnPlayerJumpStarted -= HandlePlayerJump;
+        BossController.OnAttackResolved -= HandleBossAttackResolved;
+    }
+
+    private void HandleBossAttackResolved(bool playerWasHit)
+    {
+        Debug.Log($"EventManager.HandleBossAttackResolved: playerWasHit={playerWasHit}");
+
+        if (playerWasHit)
+        {
+            ItemsCount = Mathf.Max(0, ItemsCount - 1); // never go below 0, max 1 cookie lost per attack
+            UpdateCalorieSlider();
+            DisplayInfoMessage("oh Noes the Dangle Dragon has snached a cookie!", 1f);
+        }
+        else
+        {
+            DisplayInfoMessage("You dodged the Dangle Dragon's grabbie grab it got no cookies this time", 1f);
+        }
+    }
+
+    private void ResetBossFlags()
+    {
+        isBossStage = false;
+        bossResultShown = false;
+        wasBossAttacking = false; // reset attack-edge tracking for the new fight
     }
 
     void Update()
     {
         checkTimer();
         SetItemsValue();
-
-        CheckBossGrab();
+        // CheckBossGrab() removed - hit/dodge now resolved via BossController.OnAttackResolved event
     }
 
     /// <summary>
@@ -125,17 +150,32 @@ public class EventManager : MonoBehaviour
 
         bossController = FindFirstObjectByType<BossController>();
         boss_playerController = FindFirstObjectByType<Boss_PlayerController>();
+
+        UpdateCalorieSlider(); // keep slider max in sync in case cookiesNeededToWin changed
     }
 
-    public void DisplayInfoMessage(string message)// formats info box messages to use display clear timer instead of being on screen dynamically
+    public void DisplayInfoMessage(string message, float duration = 4f)// formats info box messages to use display clear timer instead of being on screen dynamically
     {
+        if (textInfoBox == null) return;
+
         textInfoBox.text = message; //defines new message variable
 
         if (activeTextTimer != null) // stops any currently running timer upon new one started
         {
             StopCoroutine(activeTextTimer);
         }
-        activeTextTimer = StartCoroutine(ClearTextBoxAfterDelay(4f)); //starts newly defined timer (currently 4 sec)
+        activeTextTimer = StartCoroutine(ClearTextBoxAfterDelay(duration));
+    }
+
+    private void UpdateCalorieSlider()
+    {
+        if (calorieSlider == null) return;
+
+        int maxCalories = gameResultManager != null ? gameResultManager.CookiesNeededToWin : 40;
+
+        calorieSlider.minValue = 0;
+        calorieSlider.maxValue = maxCalories;
+        calorieSlider.value = ItemsCount;
     }
 
     public void updateHUDFromCookieAction()
@@ -148,17 +188,78 @@ public class EventManager : MonoBehaviour
 
         if (iconVisibility != null)
             iconVisibility.FlashVisible();
+
+        UpdateCalorieSlider();
+
+        CheckLevelComplete();
     }
+
+    private void CheckLevelComplete()
+    {
+        if (MaxItemPerLevel <= 0)
+            return; // no cookie goal set (Menu/Tutorial/Boss) - nothing to check
+
+        if (ItemPerLevelCount >= MaxItemPerLevel)
+        {
+            DisplayInfoMessage("You've collected all the cookies here! Let's check the next set of rooms.");
+
+            StopTimerCoroutine(); // stop the countdown, we're moving on early
+
+            if (levelManager != null)
+            {
+                levelManager.LoadNextChronologicalLevel();
+            }
+            else
+            {
+                Debug.LogError("EventManager is missing its LevelManager reference! Assign it in the Inspector.");
+            }
+        }
+    }
+
+    private void StopTimerCoroutine()
+    {
+        if (countdownCoroutine != null)
+        {
+            StopCoroutine(countdownCoroutine);
+            countdownCoroutine = null;
+        }
+    }
+
+    private bool isBossStage = false;
+    private bool bossResultShown = false;
 
     public void checkTimer()
     {
+        if (isBossStage)
+        {
+            if (!bossResultShown && Countdown < 1)
+            {
+                HandleBossFightEnd();
+            }
+            return;
+        }
+
         if (MaxItemPerLevel <= 0)
-            return; // no cookie goal means we're in Menu/Tutorial/Boss - no countdown here
+            return; // no cookie goal means we're in Menu/Tutorial - no countdown here
 
         if (Countdown < 1)
         {
             Timer0();
         }
+    }
+
+    private void HandleBossFightEnd()
+    {
+        bossResultShown = true; // guard so this only ever fires once per boss fight
+        StopTimerCoroutine();
+
+        if (bossController != null)
+            bossController.EndFight(); // stop attacking, snap hands back to rest
+
+        if (gameResultManager != null)
+            gameResultManager.CheckWin();
+        else
+            Debug.LogError("EventManager is missing its GameResultManager reference!");
     }
 
     public void Timer0()
@@ -175,23 +276,36 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    private void StopTimerCoroutine()
+    /// <summary>
+    /// Called by LevelManager specifically when loading the boss stage.
+    /// Starts a fight-duration countdown; the result panel only appears once it hits zero.
+    /// </summary>
+    public void StartBossStage(float fightDuration)
     {
-        if (countdownCoroutine != null)
-        {
-            StopCoroutine(countdownCoroutine);
-            countdownCoroutine = null;
-        }
+        isBossStage = true;
+        bossResultShown = false;
+        wasBossAttacking = false; // reset attack-edge tracking for the new fight
+
+        RefreshSceneReferences();
+
+        DisplayInfoMessage("The Dangle Dragon appears! Dodge its grabs!");
+
+        Countdown = fightDuration;
+        StopTimerCoroutine();
+        countdownCoroutine = StartCoroutine(ResetAndStartTimer());
     }
 
     public void OnLevelChange(int cookieTargetForLevel)//called by LevelManager after a scene is loaded
     {
+        isBossStage = false; // leaving boss mode whenever a normal level/menu loads
+        bossResultShown = false;
+
         MaxItemPerLevel = cookieTargetForLevel;
         ItemPerLevelCount = 0;
 
-        RefreshSceneReferences(); // re-find scene-scoped components for the newly loaded scene
+        RefreshSceneReferences();
 
-        SetItemsValue();  // resets level collection counter display
+        SetItemsValue();
 
         if (cookieTargetForLevel > 0)
         {
@@ -209,34 +323,44 @@ public class EventManager : MonoBehaviour
         countdownCoroutine = StartCoroutine(ResetAndStartTimer());
     }
 
+    private bool wasBossAttacking = false;
+
     public void CheckBossGrab()
     {
         if (bossController == null || boss_playerController == null)
             return;
 
-        if (bossController.IsAttacking == true)
+        bool isAttackingNow = bossController.IsAttacking;
+
+        // Only resolve hit/dodge exactly once, right when the attack begins.
+        if (isAttackingNow && !wasBossAttacking)
         {
             if ((LeftHandTarget == PlayerJumpTarget) || (RightHandTarget == PlayerJumpTarget))
             {
                 ItemsCount--;
-                DisplayInfoMessage("oh Noes the Dangle Dragon has snached a cookie!");
+                DisplayInfoMessage("oh Noes the Dangle Dragon has snached a cookie!", 1f);
+            }
+            else
+            {
+                DisplayInfoMessage("You dodged the Dangle Dragon's grabbie grab it got no cookies this time", 1f);
             }
         }
-        else
-        {
-            DisplayInfoMessage("You dodged the Dangle Dragon's grabbie grab it got no cookies this time");
-        }
 
-        if (bossController.IsAttacking == false)
-        {
-            DisplayInfoMessage("The Dangle Dragon has gotten frustraited with all your Beaverie jumping around \n it has run away with whatever cookies it could grabbie grab...");
-            if (gameResultManager != null)
-                gameResultManager.CheckWin();
-        }
+        wasBossAttacking = isAttackingNow;
     }
 
     public void SetItemsValue()  // sets the text output for the stage
     {
-        textItemsCount.text = "Item Count: " + ItemPerLevelCount.ToString() + "/" + MaxItemPerLevel.ToString(); // sets count to output to string
+        if (textItemsCount == null) return;
+
+        if (isBossStage)
+        {
+            int cookiesNeededToWin = gameResultManager != null ? gameResultManager.CookiesNeededToWin : 40;
+            textItemsCount.text = "Cookies: " + ItemsCount.ToString() + "/" + cookiesNeededToWin.ToString();
+        }
+        else
+        {
+            textItemsCount.text = "Item Count: " + ItemPerLevelCount.ToString() + "/" + MaxItemPerLevel.ToString();
+        }
     }
 }

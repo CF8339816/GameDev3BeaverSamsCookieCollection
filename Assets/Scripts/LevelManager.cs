@@ -34,6 +34,8 @@ public class LevelManager : MonoBehaviour
     };
 
     [SerializeField] private string _bossSceneName = "BossStage";
+    [SerializeField] private float _bossFightDuration = 45f;
+
     [SerializeField] private string _tutorialSceneName = "Tutorial";
     [SerializeField] private string _menuSceneName = "Menu";
 
@@ -41,6 +43,8 @@ public class LevelManager : MonoBehaviour
 
     private int _currentLevelIndex = -1;
     private int _pendingCookieTarget = 0;
+
+    private bool _pendingIsBossStage = false;
 
     public void Awake()
     {
@@ -69,28 +73,28 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
 
-        Debug.Log($"LevelManager: scene '{scene.name}' loaded, cookieTarget={_pendingCookieTarget}");
-
         LevelGeneration levelGeneration = FindFirstObjectByType<LevelGeneration>();
         if (levelGeneration != null)
         {
-            Debug.Log($"LevelManager: found LevelGeneration in '{scene.name}', generating level.");
             levelGeneration.GenerateLevel(_pendingCookieTarget);
         }
-        else
-        {
-            Debug.Log($"LevelManager: no LevelGeneration found in '{scene.name}' (expected for Menu/Tutorial/Boss).");
-        }
+
+        GameResultManager gameResultManager = FindFirstObjectByType<GameResultManager>();
+        gameResultManager?.ResetResultState();
 
         if (eventManager != null)
         {
-            eventManager.OnLevelChange(_pendingCookieTarget);
+            if (_pendingIsBossStage)
+                eventManager.StartBossStage(_bossFightDuration);
+            else
+                eventManager.OnLevelChange(_pendingCookieTarget);
         }
     }
 
-    private void LoadScene(string sceneName, int cookieTarget)
+    private void LoadScene(string sceneName, int cookieTarget, bool isBossStage = false)
     {
         _pendingCookieTarget = cookieTarget;
+        _pendingIsBossStage = isBossStage;
 
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
@@ -138,7 +142,7 @@ public class LevelManager : MonoBehaviour
     public void LoadBoss()
     {
         _currentLevelIndex = _levels.Length;
-        LoadScene(_bossSceneName, cookieTarget: 0);
+        LoadScene(_bossSceneName, cookieTarget: 0, isBossStage: true);
     }
 
     public void onLevel01() => LoadLevelByIndex(0);

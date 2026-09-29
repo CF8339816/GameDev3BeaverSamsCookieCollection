@@ -13,7 +13,9 @@ using UnityEngine;
 public class GameResultManager : MonoBehaviour
 {
     [Tooltip("How many total cookies the player needs to have collected to win the game")]
-    [SerializeField] private int cookiesNeededToWin = 40;
+    [SerializeField] private int cookiesNeededToWin = 25;
+
+    public int CookiesNeededToWin => cookiesNeededToWin;
 
     [SerializeField] private EventManager eventManager;
     [SerializeField] private GameObject resultPanel;
@@ -27,6 +29,8 @@ public class GameResultManager : MonoBehaviour
         if (resultPanel != null)
             resultPanel.SetActive(false);
     }
+
+    public bool IsResultShown { get; private set; } = false;
 
     /// <summary>
     /// Called by EventManager once the boss encounter ends (boss stops attacking).
@@ -47,11 +51,21 @@ public class GameResultManager : MonoBehaviour
 
         eventManager.DisplayInfoMessage(message);
 
+        IsResultShown = true;
+
         if (resultPanel != null)
         {
             resultPanel.SetActive(true);
             if (resultText != null)
                 resultText.text = message;
         }
+    }
+
+    public void ResetResultState()
+    {
+        IsResultShown = false;
+
+        if (resultPanel != null)
+            resultPanel.SetActive(false);
     }
 }
