@@ -152,6 +152,9 @@ public class EventManager : MonoBehaviour
 
     public void checkTimer()
     {
+        if (MaxItemPerLevel <= 0)
+            return; // no cookie goal means we're in Menu/Tutorial/Boss - no countdown here
+
         if (Countdown < 1)
         {
             Timer0();

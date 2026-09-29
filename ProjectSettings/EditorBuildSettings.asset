@@ -5,9 +5,30 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BeaverSamCookieCruncherMainGame.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/hud.unity
+    guid: ab5dab0797698854fa27ffaec0548bc8
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 437865f00b0382247b32f45e5f4b1ef5
+  - enabled: 1
+    path: Assets/Scenes/Level01.unity
+    guid: 8110142b2b2183342953554586dfda32
+  - enabled: 1
+    path: Assets/Scenes/Level02.unity
+    guid: 4797266a2d3a0374b9fd74889f0b9f7c
+  - enabled: 1
+    path: Assets/Scenes/Level03.unity
+    guid: 985c2f2a32aa5714ea544a7e8217a63b
+  - enabled: 1
+    path: Assets/Scenes/BossStage.unity
+    guid: bcf11e21d650e2c46b285508e0951dc2
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 44eb6aad58f918c4884d1d9ec3749e75
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

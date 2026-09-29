@@ -40,12 +40,21 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private EventManager eventManager;
 
     private int _currentLevelIndex = -1;
-    private string _currentSceneName;
+    private int _pendingCookieTarget = 0;
 
     public void Awake()
     {
-        if (Instance == null)
-            Instance = this;
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogWarning("Duplicate LevelManager detected — destroying this one.");
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
+        // Persist the whole 'hud' manager hierarchy across single-mode scene loads.
+        DontDestroyOnLoad(transform.root.gameObject);
 
         if (eventManager == null)
             eventManager = FindFirstObjectByType<EventManager>();
@@ -56,29 +65,35 @@ public class LevelManager : MonoBehaviour
         LoadMenu();
     }
 
-    private IEnumerator LoadSceneRoutine(string sceneName, int cookieTarget)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (!string.IsNullOrEmpty(_currentSceneName))
-        {
-            yield return SceneManager.UnloadSceneAsync(_currentSceneName);
-        }
+        SceneManager.sceneLoaded -= OnSceneLoaded;
 
-        yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-        _currentSceneName = sceneName;
+        Debug.Log($"LevelManager: scene '{scene.name}' loaded, cookieTarget={_pendingCookieTarget}");
 
-        // Only numbered levels have procedural generation.
         LevelGeneration levelGeneration = FindFirstObjectByType<LevelGeneration>();
         if (levelGeneration != null)
         {
-            levelGeneration.GenerateLevel(cookieTarget);
+            Debug.Log($"LevelManager: found LevelGeneration in '{scene.name}', generating level.");
+            levelGeneration.GenerateLevel(_pendingCookieTarget);
+        }
+        else
+        {
+            Debug.Log($"LevelManager: no LevelGeneration found in '{scene.name}' (expected for Menu/Tutorial/Boss).");
         }
 
         if (eventManager != null)
         {
-            // This re-finds BossController/Boss_PlayerController/AddAudio/IconVisibility
-            // for whatever scene was just loaded, and resets the cookie goal + timer.
-            eventManager.OnLevelChange(cookieTarget);
+            eventManager.OnLevelChange(_pendingCookieTarget);
         }
+    }
+
+    private void LoadScene(string sceneName, int cookieTarget)
+    {
+        _pendingCookieTarget = cookieTarget;
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 
     public void LoadNextChronologicalLevel()  // loads stages in next chronological order
@@ -105,25 +120,25 @@ public class LevelManager : MonoBehaviour
 
         _currentLevelIndex = index;
         LevelDefinition level = _levels[index];
-        StartCoroutine(LoadSceneRoutine(level.SceneName, level.CookieTarget));
+        LoadScene(level.SceneName, level.CookieTarget);
     }
 
     public void LoadMenu()
     {
         _currentLevelIndex = -1;
-        StartCoroutine(LoadSceneRoutine(_menuSceneName, cookieTarget: 0));
+        LoadScene(_menuSceneName, cookieTarget: 0);
     }
 
     public void LoadTutorial()
     {
         _currentLevelIndex = -1;
-        StartCoroutine(LoadSceneRoutine(_tutorialSceneName, cookieTarget: 0));
+        LoadScene(_tutorialSceneName, cookieTarget: 0);
     }
 
     public void LoadBoss()
     {
         _currentLevelIndex = _levels.Length;
-        StartCoroutine(LoadSceneRoutine(_bossSceneName, cookieTarget: 0));
+        LoadScene(_bossSceneName, cookieTarget: 0);
     }
 
     public void onLevel01() => LoadLevelByIndex(0);
