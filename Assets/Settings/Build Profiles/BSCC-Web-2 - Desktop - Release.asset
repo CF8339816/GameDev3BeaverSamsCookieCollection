@@ -37,7 +37,8 @@ MonoBehaviour:
     - line: '|   accelerometerFrequency: 60'
     - line: '|   companyName: NSCC Chris French, Myranda Roy, Roman Zhurakhov'
     - line: '|   productName: GameDev3BeaverSamsCookieCruncher'
-    - line: '|   defaultCursor: {instanceID: 0}'
+    - line: '|   defaultCursor: {fileID: 2800000, guid: 3ba7bf239cee9c741a66b9ce16960045,
+        type: 3}'
     - line: '|   cursorHotspot: {x: 0, y: 0}'
     - line: '|   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b:
         0.1254902, a: 1}'
@@ -64,8 +65,7 @@ MonoBehaviour:
     - line: '|     width: 1'
     - line: '|     height: 1'
     - line: '|   m_SplashScreenLogos: []'
-    - line: '|   m_VirtualRealitySplashScreen: {fileID: 2800000, guid: c4bf17379e45d2943a85685f5d2ba7d6,
-        type: 3}'
+    - line: '|   m_VirtualRealitySplashScreen: {instanceID: 0}'
     - line: '|   m_HolographicTrackingLossScreen: {instanceID: 0}'
     - line: '|   defaultScreenWidth: 1024'
     - line: '|   defaultScreenHeight: 768'
@@ -846,7 +846,7 @@ MonoBehaviour:
     - line: '|   ps4attribVROutputEnabled: 0'
     - line: '|   monoEnv: '
     - line: '|   splashScreenBackgroundSourceLandscape: {fileID: 21300000, guid:
-        c4bf17379e45d2943a85685f5d2ba7d6, type: 3}'
+        9940d65f3e0762e46aaf38f53fd71e9a, type: 3}'
     - line: '|   splashScreenBackgroundSourcePortrait: {instanceID: 0}'
     - line: '|   blurSplashScreenBackground: 1'
     - line: '|   spritePackerPolicy: '

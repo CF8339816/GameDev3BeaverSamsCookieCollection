@@ -92,13 +92,14 @@ public class FPS_Controller : MonoBehaviour
         {
                      
             Cursor.visible = true;
-
+            Cursor.lockState = CursorLockMode.Confined;
 
         }
         else
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
+
         }
 
         if (controller != null)
