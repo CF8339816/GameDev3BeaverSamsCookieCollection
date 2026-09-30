@@ -594,6 +594,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3455440319553761884, guid: f996112b40d5e794da8ae6636f69938f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.010481471
+      objectReference: {fileID: 0}
     - target: {fileID: 7181227463387256094, guid: f996112b40d5e794da8ae6636f69938f, type: 3}
       propertyPath: canCrouch
       value: 0
@@ -605,6 +609,10 @@ PrefabInstance:
     - target: {fileID: 8588660136707474789, guid: f996112b40d5e794da8ae6636f69938f, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999490384976986072, guid: f996112b40d5e794da8ae6636f69938f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.010331585
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -5312,6 +5312,7 @@ GameObject:
   - component: {fileID: 2765338825931890020}
   - component: {fileID: 5163631015105526650}
   - component: {fileID: 200960256968380702}
+  - component: {fileID: 9099132585866092284}
   m_Layer: 5
   m_Name: TutorialCanvas
   m_TagString: Untagged
@@ -5319,6 +5320,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9099132585866092284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9099132585866092283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c12848aeec0e5045a1c1c46ccfda736, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialButtons
+  tutorialStart: {fileID: 677376556194760539}
+  tutorialBackToMenu: {fileID: 4606553433080038602}
 --- !u!114 &9188914827789173520
 MonoBehaviour:
   m_ObjectHideFlags: 0
