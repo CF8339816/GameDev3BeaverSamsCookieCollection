@@ -82,11 +82,13 @@ public class PauseMenuManager : MonoBehaviour
         if (isPaused)
         { 
             Resume();
+            Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = false; // Hide the cursor when resuming the game
         }
         else
         {
             Pause();
+            Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true; // Show the cursor when pausing the game
         }
     }

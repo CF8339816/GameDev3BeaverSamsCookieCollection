@@ -70,6 +70,7 @@ public class FPS_Controller : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
 
         if (controller != null)

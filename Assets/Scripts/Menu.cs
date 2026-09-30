@@ -20,7 +20,7 @@ public class Menu : MonoBehaviour
     {
         if (levelManager == null)
             levelManager = FindFirstObjectByType<LevelManager>();
-
+        Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
     }
 

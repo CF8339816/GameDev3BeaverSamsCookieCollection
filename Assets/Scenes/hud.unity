@@ -354,10 +354,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 268467971}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dc50de353d598d4a802bf708d18cf29, type: 3}
+  m_Script: {fileID: 11500000, guid: df6d89b6aa5a639489fc7a6e96ac76c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenuManager
-  pauseMenuPanel: {fileID: 1662402646}
+  pauseMenuPanel: {fileID: 1150277738}
   resumeButton: {fileID: 357183078}
   mainMenuButton: {fileID: 148813244}
   volumeSlider: {fileID: 9139521714494520707}

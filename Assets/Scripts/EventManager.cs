@@ -252,6 +252,9 @@ public class EventManager : MonoBehaviour
     {
         bossResultShown = true; // guard so this only ever fires once per boss fight
         StopTimerCoroutine();
+        
+        Cursor.lockState = CursorLockMode.Confined;// Confine the cursor to the game window boundaries redundancy
+        Cursor.visible = true;   // Ensure the cursor remains visible for button selection
 
         if (bossController != null)
             bossController.EndFight(); // stop attacking, snap hands back to rest
