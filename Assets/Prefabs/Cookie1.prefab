@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5126848741755336838}
   - component: {fileID: 3975219125987108343}
   - component: {fileID: 3662003412746025575}
+  - component: {fileID: 8571414001128329274}
   m_Layer: 0
   m_Name: Cookie1
   m_TagString: Interactable
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 2.31, y: 0, z: 1.84941}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -160,3 +161,16 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &8571414001128329274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5747208976734190301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e112348b09ac043a147a82639b741b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CookieRotation
+  rotationSpeed: 50
